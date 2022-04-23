@@ -21,7 +21,8 @@ function getProductsData() {
 }
 // or should we do it this way?
 // async function getProductsDataAwait() {
-//   products = await fetch("../json/tents.json").then(convertToJson);
+//   products = await fetch("../json/tents.json")
+//      .then(convertToJson);
 // }
 
 // add to cart button event handler
