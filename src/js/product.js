@@ -1,4 +1,5 @@
 let products = [];
+let i = localStorage.length; //item count
 function convertToJson(res) {
   if (res.ok) {
     return res.json();
@@ -26,8 +27,9 @@ function getProductsData() {
 
 // add to cart button event handler
 function addToCart(e) {
+  i += 1;
   const product = products.find((item) => item.Id === e.target.dataset.id);
-  setLocalStorage("so-cart", product);
+  setLocalStorage(i, product);
 }
 
 getProductsData();
