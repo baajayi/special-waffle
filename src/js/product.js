@@ -26,8 +26,20 @@ function getProductsData() {
 
 // add to cart button event handler
 function addToCart(e) {
-  const product = products.find((item) => item.Id === e.target.dataset.id);
-  setLocalStorage("so-cart", product);
+  let product = products.find((item) => item.Id === e.target.dataset.id);
+  let i=0
+  if (localStorage.getItem(0)===null){
+    setLocalStorage(0,product)
+  }
+  else{
+    let k=1
+    while(i!=localStorage.length){
+    i++;
+    setLocalStorage(k,product);
+   }
+  }
+  
+  // setLocalStorage("so-cart", product);
 }
 
 getProductsData();

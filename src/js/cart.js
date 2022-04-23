@@ -1,12 +1,21 @@
+let cartItemsArray=[];
+
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
 function getCartContents() {
   let markup = "";
-  const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => renderCartItem(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  let j=0
+  while(j!=localStorage.length){
+    let cartItem = getLocalStorage(j);
+    cartItemsArray.push(cartItem);
+    j++;
+  }
+    let htmlItems = cartItemsArray.map((item) => renderCartItem(item));
+    document.querySelector(".product-list").innerHTML=htmlItems.join("");
+  
+
   // document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
 }
 
