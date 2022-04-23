@@ -1,20 +1,18 @@
-let cartItemsArray=[];
+let cartItemsArray = [];
 
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
 function getCartContents() {
-  let markup = "";
-  let j=0
-  while(j!=localStorage.length){
+  let j = 0;
+  while (j != localStorage.length) {
     let cartItem = getLocalStorage(j);
     cartItemsArray.push(cartItem);
     j++;
   }
-    let htmlItems = cartItemsArray.map((item) => renderCartItem(item));
-    document.querySelector(".product-list").innerHTML=htmlItems.join("");
-  
+  let htmlItems = cartItemsArray.map((item) => renderCartItem(item));
+  document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
   // document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
 }
@@ -34,7 +32,6 @@ function renderCartItem(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-  console.log(newItem);
   return newItem;
 }
 

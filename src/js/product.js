@@ -27,18 +27,12 @@ function getProductsData() {
 // add to cart button event handler
 function addToCart(e) {
   let product = products.find((item) => item.Id === e.target.dataset.id);
-  let i=0
-  if (localStorage.getItem(0)===null){
-    setLocalStorage(0,product)
+  if (localStorage.getItem(0) === null) {
+    setLocalStorage(0, product);
+  } else {
+    setLocalStorage(localStorage.length, product);
   }
-  else{
-    let k=1
-    while(i!=localStorage.length){
-    i++;
-    setLocalStorage(k,product);
-   }
-  }
-  
+
   // setLocalStorage("so-cart", product);
 }
 
