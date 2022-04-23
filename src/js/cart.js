@@ -36,7 +36,7 @@ function getCartContents() {
     //appending
     
     itemLi.appendChild(itemA);
-    itemLi.appendChild(itemAImg);
+    itemA.appendChild(itemAImg);
     itemLi.appendChild(itemA2);
     itemLi.appendChild(itemAH2);
     itemLi.appendChild(itemPColor);
