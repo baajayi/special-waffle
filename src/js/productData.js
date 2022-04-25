@@ -1,4 +1,3 @@
-
 function convertToJson(res) {
     if (res.ok) {
       return res.json();
@@ -6,10 +5,7 @@ function convertToJson(res) {
       throw new Error("Bad Response");
     }
   }
-
-
   
-
   export default class ProductData {
     constructor (category) {
         this.category = category;
@@ -32,8 +28,11 @@ function convertToJson(res) {
 
     async findProductById(id) {
         const products = await this.getData()
-        return products.find((id) => id.Id === e.target.dataset.id);
+        return products.find((item) => item.Id === id);
 
     }
 
   };
+
+  
+
