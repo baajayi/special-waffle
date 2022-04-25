@@ -1,3 +1,8 @@
+import ProductData from "./productData";
+const dataSource = new ProductData('tents');
+console.log(dataSource);
+console.log(dataSource.getData());
+
 let products = [];
 let i = localStorage.length; //item count
 function convertToJson(res) {
@@ -13,13 +18,13 @@ function setLocalStorage(key, data) {
 }
 
 // get tents data
-function getProductsData() {
-  fetch("../json/tents.json")
-    .then(convertToJson)
-    .then((data) => {
-      products = data;
-    });
-}
+// function getProductsData() {
+//   fetch("../json/tents.json")
+//     .then(convertToJson)
+//     .then((data) => {
+//       products = data;
+//     });
+// }
 // or should we do it this way?
 // async function getProductsDataAwait() {
 //   products = await fetch("../json/tents.json").then(convertToJson);
