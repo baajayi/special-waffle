@@ -2,7 +2,7 @@ function convertToJson(res) {
     if (res.ok) {
       return res.json();
     } else {
-      throw new Error("Bad Response");
+      throw new Error('Bad Response');
     }
   }
   
@@ -29,7 +29,6 @@ function convertToJson(res) {
     async findProductById(id) {
         const products = await this.getData()
         return products.find((item) => item.Id === id);
-
     }
 
   };

@@ -1,8 +1,17 @@
+import ProductData from "./productData.js";
+
+
 export default class ProductDetails {
     constructor (productId, dataSource) {
+        
         this.productId = productId;
         this.products = {};
         this.dataSource = dataSource;
+        this.i = localStorage.length;
+        this.prodTable = dataSource.findProductById(productId);
+        this.prodName = this.prodTable.Name;
+        console.log('datasource:');
+        console.table(this.dataSource);
     }
 
     async init () {
@@ -10,14 +19,18 @@ export default class ProductDetails {
         // once we have the product details we can render out the HTML
         // once the HTML is rendered we can add a listener to Add to Cart button
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-        document.getElementById('productPlacement')
+        document.getElementById('addToCart')
         .addEventListener('click', this.addToCart.bind(this));
     }
 
+    setLocalStorage(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+      }
+
     addToCart(e) {
-        i += 1;
-        const product = this.products.find((item) => item.Id === e.target.dataset.id);
-        setLocalStorage(i, product);
+        this.i += 1;
+        //const product = this.dataSource.find((item) => item.Id === this.productId);
+        this.setLocalStorage(localStorage.length, this.prodName);
     }
 
     renderProductDetails() {

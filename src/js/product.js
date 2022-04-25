@@ -3,24 +3,23 @@ import ProductDetails from './productDetails';
 import { getParams } from './utils.js';
 const dataSource = new ProductData('tents');
 
-console.log(dataSource);
+//console.log(dataSource);
 //console.log(dataSource.getData());
 
 const productId = getParams('products');
-//console.log(dataSource.findProductById(productId));
+const prodTable = dataSource.findProductById(productId);
+console.table(prodTable);
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
-console.log(product);
+//console.log(product);
 
 let products = [];
 let i = localStorage.length; //item count
 
 
 
-function setLocalStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
-}
+
 
 
 // add listener to Add to Cart button
