@@ -13,6 +13,8 @@ export default class ProductDetails {
         this.prodName = this.prodTable.Name;
         console.log('datasource:');
         console.table(this.dataSource);
+        console.log('try')
+        console.table(this.prodTable.Name)
     }
 
     async init () {
@@ -21,7 +23,8 @@ export default class ProductDetails {
         // once the HTML is rendered we can add a listener to Add to Cart button
         // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
         this.products = await this.dataSource.findProductById(this.productId);
-        document.querySelector('main').innerHTML = this.renderProductDetails();
+        console.log(this.products)
+        document.querySelector('main').innerHTML = this.renderProductDetails(this.products);
         document.getElementById('addToCart')
         .addEventListener('click', this.addToCart.bind(this));
     }
@@ -36,23 +39,21 @@ export default class ProductDetails {
         setLocalStorage(localStorage.length, this.products);
     }
 
-    renderProductDetails() {
+    renderProductDetails(product) {
         //method to generate the HTML to display our product.
         return `<section class="product-detail">
-        <h3>Cedar Ridge</h3>
-        <h2 class="divider">Rimrock Tent - 2-Person, 3-Season</h2>
+        <h3>${product.Brand.Name}</h3>
+        <h2 class="divider">${product.Name}</h2>
         <img
           class="divider"
-          src="../images/tents/cedar-ridge-rimrock-tent-2-person-3-season-in-rust-clay~p~344yj_01~320.jpg"
-          alt="Rimrock Tent - 2-Person, 3-Season"
+          src=${product.Image}
+          alt=${product.Name}
         />
 
-        <p class="product-card__price">$69.99</p>
-        <p class="product__color">Rust/Clay</p>
+        <p class="product-card__price">${product.ListPrice}</p>
+        <p class="product__color">${product.Colors[0].ColorName}</p>
         <p class="product__description">
-          Lightweight and ready for adventure, this Cedar Ridge Rimrock tent
-          boasts a weather-ready design that includes a tub-style floor and
-          factory-sealed rain fly
+        ${product.DescriptionHtmlSimple}
         </p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.productId}">Add to Cart</button>

@@ -8,6 +8,7 @@ const dataSource = new ProductData('tents');
 
 const productId = getParams('products');
 const prodTable = dataSource.findProductById(productId);
+console.log('here')
 console.table(prodTable);
 
 const product = new ProductDetails(productId, dataSource);
