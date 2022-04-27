@@ -32,7 +32,7 @@ function getCartContents() {
     //textContent
     itemAH2.textContent = `${cartItem.Name}`;
     itemPColor.textContent = `${cartItem.Colors[0].ColorName}`;
-    itemPQuantity.textContent = `qty: 1`;
+    itemPQuantity.textContent = "qty: 1";
     itemPPrice.textContent = `${cartItem.FinalPrice}`;
 
     //appending

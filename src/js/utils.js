@@ -23,9 +23,9 @@ export function setClick(selector, callback) {
 }
 
 //product pull from HTML URL parameter
-export function getParams(param) {
+export function getParams() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('product');
+  const product = urlParams.get("product");
   return product;
 }

@@ -1,30 +1,20 @@
-import ProductData from './productData.js';
-import ProductDetails from './productDetails';
-import { getParams } from './utils.js';
-const dataSource = new ProductData('tents');
+import ProductData from "./productData.js";
+import ProductDetails from "./productDetails";
+import { getParams } from "./utils.js";
+const dataSource = new ProductData("tents");
 
 //console.log(dataSource);
 //console.log(dataSource.getData());
 
-const productId = getParams('products');
-const prodTable = dataSource.findProductById(productId);
-console.log('here')
-console.table(prodTable);
+const productId = getParams("products");
+//const prodTable = dataSource.findProductById(productId);
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
 //console.log(product);
 
-let products = [];
-let i = localStorage.length; //item count
-
-
-
-
-
-
 // add listener to Add to Cart button
-document.getElementById('addToCart').addEventListener('click', addToCart);
+//document.getElementById('addToCart').addEventListener('click', addToCart());
 
 // function convertToJson(res) {
 //   if (res.ok) {

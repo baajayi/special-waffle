@@ -1,47 +1,41 @@
-import ProductData from "./productData.js";
 import { setLocalStorage } from "./utils.js";
 
-
 export default class ProductDetails {
-    constructor (productId, dataSource) {
-        
-        this.productId = productId;
-        this.products = {};
-        this.dataSource = dataSource;
-        this.i = localStorage.length;
-        this.prodTable = dataSource.findProductById(productId);
-        this.prodName = this.prodTable.Name;
-        console.log('datasource:');
-        console.table(this.dataSource);
-        console.log('try')
-        console.table(this.prodTable.Name)
-    }
+  constructor(productId, dataSource) {
+    this.productId = productId;
+    this.products = {};
+    this.dataSource = dataSource;
+    this.i = localStorage.length;
+  }
 
-    async init () {
-         // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-        // once we have the product details we can render out the HTML
-        // once the HTML is rendered we can add a listener to Add to Cart button
-        // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-        this.products = await this.dataSource.findProductById(this.productId);
-        console.log(this.products)
-        document.querySelector('main').innerHTML = this.renderProductDetails(this.products);
-        document.getElementById('addToCart')
-        .addEventListener('click', this.addToCart.bind(this));
-    }
+  async init() {
+    // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
+    // once we have the product details we can render out the HTML
+    // once the HTML is rendered we can add a listener to Add to Cart button
+    // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
+    this.products = await this.dataSource.findProductById(this.productId);
 
-    //setLocalStorage(key, data) {
-    //   localStorage.setItem(key, JSON.stringify(data));
-    //  }
+    document.querySelector("main").innerHTML = this.renderProductDetails(
+      this.products
+    );
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addToCart.bind(this));
+  }
 
-    addToCart(e) {
-        this.i += 1;
-        //const product = this.dataSource.find((item) => item.Id === this.productId);
-        setLocalStorage(localStorage.length, this.products);
-    }
+  //setLocalStorage(key, data) {
+  //   localStorage.setItem(key, JSON.stringify(data));
+  //  }
 
-    renderProductDetails(product) {
-        //method to generate the HTML to display our product.
-        return `<section class="product-detail">
+  addToCart() {
+    this.i += 1;
+    //const product = this.dataSource.find((item) => item.Id === this.productId);
+    setLocalStorage(localStorage.length, this.products);
+  }
+
+  renderProductDetails(product) {
+    //method to generate the HTML to display our product.
+    return `<section class="product-detail">
         <h3>${product.Brand.Name}</h3>
         <h2 class="divider">${product.Name}</h2>
         <img
@@ -58,8 +52,6 @@ export default class ProductDetails {
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.productId}">Add to Cart</button>
         </div>
-      </section>`
-
-
-    }
+      </section>`;
+  }
 }
