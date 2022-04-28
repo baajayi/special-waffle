@@ -16,15 +16,6 @@ export default class ProductData {
     return fetch(this.path)
       .then(convertToJson)
       .then((data) => data);
-    //fetch(this.path)
-    //     .then(convertToJson)
-    //     .then((data) => {
-    //     products = data;
-    // });>
-    // async function getProductsDataAwait() {
-    //     products = await fetch("../json/tents.json").then(convertToJson);
-    //     console.log(products);
-    // }
   }
 
   async findProductById(id) {

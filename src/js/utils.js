@@ -29,3 +29,17 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
+
+export function renderListWithTemplate(
+  template,
+  parentElement,
+  list,
+  callback
+) {
+  const area = document.querySelector(parentElement);
+  for (let i = 0; i < list.length; i++) {
+    const newTemplate = template.content.cloneNode(true);
+    const templateFinished = callback(newTemplate, list[i]);
+    area.appendChild(templateFinished);
+  }
+}
