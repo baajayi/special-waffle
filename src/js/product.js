@@ -24,7 +24,7 @@ let i = localStorage.length; //item count
 
 
 // add listener to Add to Cart button
-document.getElementById('addToCart').addEventListener('click', addToCart);
+// document.getElementById('addToCart').addEventListener('click', addToCart);
 
 // function convertToJson(res) {
 //   if (res.ok) {

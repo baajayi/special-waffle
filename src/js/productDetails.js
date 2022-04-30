@@ -1,5 +1,5 @@
-import ProductData from "./productData.js";
-import { setLocalStorage } from "./utils.js";
+
+import { setLocalStorage } from './utils.js';
 
 
 export default class ProductDetails {

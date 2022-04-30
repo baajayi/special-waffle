@@ -15,11 +15,11 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
 
 //product pull from HTML URL parameter
@@ -28,4 +28,12 @@ export function getParams(param) {
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get('product');
   return product;
+}
+
+export function renderListWithTemplate(template, parent, list, callback) {
+  list.forEach(item => {
+    const clone = template.content.cloneNode(true);
+    const templateWithData = callback(clone, item);
+    parent.appendChild(templateWithData);
+  })
 }
