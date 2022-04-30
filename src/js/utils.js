@@ -30,13 +30,8 @@ export function getParams() {
   return product;
 }
 
-export function renderListWithTemplate(
-  template,
-  parentElement,
-  list,
-  callback
-) {
-  const area = document.querySelector(parentElement);
+export function renderListWithTemplate(template, tag, list, callback) {
+  const area = document.getElementById(tag);
   for (let i = 0; i < list.length; i++) {
     const newTemplate = template.content.cloneNode(true);
     const templateFinished = callback(newTemplate, list[i]);

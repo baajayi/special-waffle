@@ -7,10 +7,10 @@ export default class ProductList {
     this.dataSource = dataSource;
   }
 
-  async init(selectorId, cardArea) {
+  async init(selectorId) {
     var list = await this.dataSource.getData();
     const newList = this.reduceList(list);
-    this.renderList(newList, selectorId, cardArea);
+    this.renderList(newList, selectorId, this.tag);
   }
 
   //Get rid of extra tents
@@ -20,9 +20,9 @@ export default class ProductList {
     return list;
   }
 
-  renderList(list, selectorId, cardArea) {
+  renderList(list, selectorId, tag) {
     const grabTemplate = document.getElementById(selectorId);
-    renderListWithTemplate(grabTemplate, cardArea, list, this.prepareTemplate);
+    renderListWithTemplate(grabTemplate, tag, list, this.prepareTemplate);
   }
 
   prepareTemplate(tempClone, product) {
