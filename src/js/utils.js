@@ -29,3 +29,22 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
+export function renderListWithTemplate(template, parentElement, list, callback){
+  let filterArray=[]
+    list.forEach(element => {
+    let exists=false;
+    filterArray.forEach(i=>{
+        if(i===element.NameWithoutBrand.substring(0,3)){
+          exists=true
+        }
+    })
+    if (exists){
+      exists=false
+    }else{
+    const clone = template.content.cloneNode(true);
+    const preparedClone=callback(clone,element);
+    parentElement.appendChild(preparedClone);
+    filterArray.push(element.NameWithoutBrand.substring(0,3))
+    }
+});
+}
