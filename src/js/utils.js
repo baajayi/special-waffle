@@ -29,19 +29,25 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
-export function renderListWithTemplate(template, parentElement, list, callback, callbackTwo){
-  let filterArray=['']
-    list.forEach(element => {
-    let exists=false;
-    filterArray.forEach(i=>{
-        exists=callbackTwo(i,element,exists,filterArray)
-    })
-    if (exists){
-      exists=false
-    }else{
-    const clone = template.content.cloneNode(true);
-    const preparedClone=callback(clone,element);
-    parentElement.appendChild(preparedClone);
+export function renderListWithTemplate(
+  template,
+  parentElement,
+  list,
+  callback,
+  callbackTwo
+) {
+  let filterArray = [""];
+  list.forEach((element) => {
+    let exists = false;
+    filterArray.forEach((i) => {
+      exists = callbackTwo(i, element, exists, filterArray);
+    });
+    if (exists) {
+      exists = false;
+    } else {
+      const clone = template.content.cloneNode(true);
+      const preparedClone = callback(clone, element);
+      parentElement.appendChild(preparedClone);
     }
-});
+  });
 }
