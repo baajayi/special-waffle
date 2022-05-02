@@ -29,14 +29,12 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
-export function renderListWithTemplate(template, parentElement, list, callback){
-  let filterArray=[]
+export function renderListWithTemplate(template, parentElement, list, callback, callbackTwo){
+  let filterArray=['']
     list.forEach(element => {
     let exists=false;
     filterArray.forEach(i=>{
-        if(i===element.NameWithoutBrand.substring(0,3)){
-          exists=true
-        }
+        exists=callbackTwo(i,element,exists,filterArray)
     })
     if (exists){
       exists=false
@@ -44,7 +42,6 @@ export function renderListWithTemplate(template, parentElement, list, callback){
     const clone = template.content.cloneNode(true);
     const preparedClone=callback(clone,element);
     parentElement.appendChild(preparedClone);
-    filterArray.push(element.NameWithoutBrand.substring(0,3))
     }
 });
 }

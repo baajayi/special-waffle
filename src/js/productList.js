@@ -11,7 +11,7 @@ export default class ProductList{
     async init(){
         const list = await this.datasource;
         // this.renderList(list)
-        renderListWithTemplate(this.template,this.listElement,list,this.prepareTemplate)
+        renderListWithTemplate(this.template,this.listElement,list,this.prepareTemplate, this.filterList)
         console.log(this.filterArray)
     }
     // renderList(productList){
@@ -31,13 +31,18 @@ export default class ProductList{
         return clone
         // clone[img].setAttribute('src',product.Image)
     }
-    filterList(i,element){
+    filterList(i,element,boolean, filterArray){
+        if (boolean!=true){
+        let alreadyExists=false
         if(i===element.NameWithoutBrand.substring(0,3)){
-            return true
+            alreadyExists=true
+            return alreadyExists
           }
-          else{console.log(i,element.NameWithoutBrand.substring(0,3))}
-    }
-    updateFilterList(filterArray,element){
+          else{
+              filterArray.push(element.NameWithoutBrand.substring(0,3))
+            return alreadyExists}
+    }else{
         filterArray.push(element.NameWithoutBrand.substring(0,3))
-    }
+        return true
+    }}
 }
