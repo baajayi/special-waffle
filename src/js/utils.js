@@ -1,3 +1,10 @@
+function convertToText(res) {
+  if (res.ok) {
+    return res.text();
+  } else {
+    throw new Error('Bad Response');
+  }
+}
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -50,4 +57,32 @@ export function renderListWithTemplate(
       parentElement.appendChild(preparedClone);
     }
   });
+}
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback,
+) { 
+  let clone = template.content.cloneNode(true);
+  if (callback) {
+    clone = callback(clone, data);
+  }
+  parentElement.appendChild(clone);
+
+}
+export async function loadTemplate(path) {
+  let page = await fetch(path).then(convertToText);
+  let template = document.createElement("template");
+  template.innerHTML = page
+  return template
+}
+
+export async function loadHeaderFooter () {
+  let header = await loadTemplate ("../partials.header.html")
+  let footer = await loadTemplate ("../partials.footer.html")
+  let mainHeader = document.querySelector("#main-header");
+  let mainFooter = document.querySelector("#main-footer");
+  renderWithTemplate(header, mainHeader);
+  renderWithTemplate(footer, mainFooter);
 }
