@@ -9,7 +9,7 @@ module.exports = {
     out: "build",
     baseUrl: "/sleepoutside/build/",
     clean: true,
-    htmlFragments: true
+    htmlFragments: true,
   },
   experiments: {
     optimize: {
