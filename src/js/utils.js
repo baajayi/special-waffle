@@ -29,7 +29,7 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
-export function renderListWithTemplate(
+export async function renderListWithTemplate(
   template,
   parentElement,
   list,
@@ -37,6 +37,9 @@ export function renderListWithTemplate(
   callbackTwo
 ) {
   let filterArray = [""];
+  list = list;
+  console.log(`Aaron ${list}`);
+
   list.forEach((element) => {
     let exists = false;
     filterArray.forEach((i) => {

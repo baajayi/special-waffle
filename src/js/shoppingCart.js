@@ -14,6 +14,7 @@ export default class ShoppingCart {
         this.getLocalStorage();
         let list = this.dataArray;
         for (let i = 0; i < localStorage.length; i++) {
+            console.log(list);
             renderListWithTemplate(this.template, this.parentElement, list[i], this.prepareTemplate);
         }
     }
