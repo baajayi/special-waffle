@@ -9,10 +9,12 @@ export function qs(selector, parent = document) {
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -29,6 +31,7 @@ export function getParams() {
   const product = urlParams.get("product");
   return product;
 }
+
 export function renderListWithTemplate(
   template,
   parentElement,
@@ -50,4 +53,34 @@ export function renderListWithTemplate(
       parentElement.appendChild(preparedClone);
     }
   });
+}
+
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  const clone = template.content.cloneNode(true);
+  if (callback) {
+    clone = callback(clone, data);
+  }
+  parentElement.appendChild(clone);
+}
+
+export async function loadTemplate(path) {
+  const text = await fetch(path)
+  .then(response => response.text());
+  const template = document.createElement('template');
+  template.innerHTML = text;
+  return template; 
+}
+
+export function loadHeaderFooter(path1, path2) {
+  const headerTemp = loadTemplate(path1);
+  const footerTemp = loadTemplate(path2);
+  const headLocation = document.querySelector("header");
+  const footLocation = document.querySelector("footer");
+  renderWithTemplate(headerTemp, headLocation);
+  renderWithTemplate(footerTemp, footLocation);
 }

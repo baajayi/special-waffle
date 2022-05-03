@@ -1,15 +1,86 @@
-export function qs(e, t = document) {
-  return t.querySelector(e);
+// wrapper for querySelector...returns matching element
+export function qs(selector, parent = document) {
+  return parent.querySelector(selector);
 }
-export function getLocalStorage(e) {
-  return JSON.parse(localStorage.getItem(e));
+// or a more concise version if you are into that sort of thing:
+// export const qs = (selector, parent = document) => parent.querySelector(selector);
+
+// retrieve data from localstorage
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
 }
-export function setLocalStorage(e, t) {
-  localStorage.setItem(e, JSON.stringify(t));
+
+// save data to local storage
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }
-export function setClick(e, t) {
-  qs(e).addEventListener("touchend", (n) => {
-    n.preventDefault(), t();
-  }),
-    qs(e).addEventListener("click", t);
+
+// set a listener for both touchend and click
+export function setClick(selector, callback) {
+  qs(selector).addEventListener("touchend", (event) => {
+    event.preventDefault();
+    callback();
+  });
+  qs(selector).addEventListener("click", callback);
+}
+
+//product pull from HTML URL parameter
+export function getParams() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const product = urlParams.get("product");
+  return product;
+}
+
+export function renderListWithTemplate(
+  template,
+  parentElement,
+  list,
+  callback,
+  callbackTwo
+) {
+  let filterArray = [""];
+  list.forEach((element) => {
+    let exists = false;
+    filterArray.forEach((i) => {
+      exists = callbackTwo(i, element, exists, filterArray);
+    });
+    if (exists) {
+      exists = false;
+    } else {
+      const clone = template.content.cloneNode(true);
+      const preparedClone = callback(clone, element);
+      parentElement.appendChild(preparedClone);
+    }
+  });
+}
+
+export function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  const clone = template.content.cloneNode(true);
+  if (callback) {
+    clone = callback(clone, data);
+  }
+  parentElement.appendChild(clone);
+}
+
+export async function loadTemplate(path) {
+  const text = await fetch(path)
+  .then(response => response.text());
+  const template = document.createElement('template');
+  template.innerHTML = text;
+  return template; 
+}
+
+export function loadHeaderFooter(path1, path2) {
+  const headerTemp = loadTemplate(path1);
+  const footerTemp = loadTemplate(path2);
+  const headLocation = document.querySelector("header");
+  const footLocation = document.querySelector("footer");
+  renderWithTemplate(headerTemp, headLocation);
+  renderWithTemplate(footerTemp, footLocation);
 }
