@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Cart</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <template id="cart-template">
+      <li class="cart-card divider">
+        <a href="product_pages/product-details.html?product=" class="cart-card__image">
+          <img
+            src=""
+            alt=""
+          />
+        </a>
+        <a href="product_pages/product-details.html?product=">
+          <h2 class="card__name">Marmot Ajax Tent - 3-Person, 3-Season</h2>
+        </a>
+        <p class="cart-card__color">Pale Pumpkin/Terracotta</p>
+        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__price">price</p>
+      </li>
+    </template>
   </head>
   <body>
     <header class="divider" id="cart-header">
@@ -47,6 +63,6 @@
       </section>
     </main>
     <footer id="cart-footer"></footer>
-    <script src="../js/cart.js" type="module"></script>
+    <script src="../js/shoppingCart.js" type="module"></script>
   </body>
 </html>
