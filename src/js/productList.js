@@ -27,6 +27,7 @@ export default class ProductList {
   //         console.log(element)
   //     });
   // }
+  
   prepareTemplate(clone, product) {
     clone.querySelector("a").href += product.Id;
     clone.querySelector("img").src = product.Image;
