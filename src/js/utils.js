@@ -66,10 +66,10 @@ export function renderListWithTemplate(
 //       filterArray.forEach((i) => {
 //       exists = callbackTwo(i, element, exists, filterArray);
 //     });
-//     }    
+//     }
 //     if (exists) {
 //       exists = false;
-//     } 
+//     }
 //     else {
 //       let clone = template.content.cloneNode(true);
 //       if(callback){
@@ -80,27 +80,31 @@ export function renderListWithTemplate(
 //   });
 // }
 
-export async function renderWithTemplate(template,parentElement,data,callback) {
-    await template;
-    let clone = template.content.cloneNode(true);
-    if(callback){
-      clone = callback(clone, data);
-      }
-    parentElement.appendChild(clone);
+export async function renderWithTemplate(
+  template,
+  parentElement,
+  data,
+  callback
+) {
+  await template;
+  let clone = template.content.cloneNode(true);
+  if (callback) {
+    clone = callback(clone, data);
+  }
+  parentElement.appendChild(clone);
 }
 
-export async function loadTemplate(path){
-  const data = await fetch(path).then(response=>response.text());
-  let newTemplate=document.createElement('template');
-  newTemplate.innerHTML=data;
+export async function loadTemplate(path) {
+  const data = await fetch(path).then((response) => response.text());
+  let newTemplate = document.createElement("template");
+  newTemplate.innerHTML = data;
   return newTemplate;
 }
-export async function loadHeaderFooter(header,footer){
-  let headerTemplate=await loadTemplate('../partials/header.html');
-  let footerTemplate=await loadTemplate('../partials/footer.html');
-  console.log(headerTemplate)
+export async function loadHeaderFooter(header, footer) {
+  let headerTemplate = await loadTemplate("../partials/header.html");
+  let footerTemplate = await loadTemplate("../partials/footer.html");
   let headerElement = document.querySelector(header);
   let footerElement = document.querySelector(footer);
-  renderWithTemplate(headerTemplate,headerElement);
-  renderWithTemplate(footerTemplate,footerElement)
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 }

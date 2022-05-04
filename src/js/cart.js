@@ -7,7 +7,6 @@ function getCartContents() {
   //let markup = "";
   for (let i = 0; i < localStorage.length; i++) {
     let cartItem = getLocalStorage(i);
-    console.log(cartItem)
     //const htmlItems = cartItems.map((item) => renderCartItem(item));
     //document.querySelector(".product-list").innerHTML = htmlItems.join("");
     let ul = document.querySelector(".product-list");
@@ -69,5 +68,5 @@ function getCartContents() {
 //console.log(newItem);
 // return newItem;
 //}
-loadHeaderFooter('#cart-header','#cart-footer')
+loadHeaderFooter("#cart-header", "#cart-footer");
 getCartContents();

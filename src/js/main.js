@@ -7,4 +7,4 @@ const ul = document.querySelector(".product-list");
 const template = document.querySelector("#product-card-template");
 const productList = new ProductList("tents", ul, data, template);
 productList.init();
-loadHeaderFooter('#main-header','#main-footer');
+loadHeaderFooter("#main-header", "#main-footer");
