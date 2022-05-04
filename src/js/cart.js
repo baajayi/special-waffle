@@ -1,5 +1,7 @@
 import { loadHeaderFooter } from "./utils.js";
 
+loadHeaderFooter();
+
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
@@ -52,7 +54,3 @@ function getCartContents() {
 }
 
 getCartContents();
-
-const header = document.getElementById("main-header");
-const footer = document.getElementById("main-footer");
-loadHeaderFooter(header, footer);
