@@ -1,5 +1,5 @@
 import { loadHeaderFooter } from "./utils.js";
-import { renderListWithTemplate } from "./utils.js";
+import { renderWithTemplate } from "./utils.js";
 
 export default class ShoppingCart {
     constructor(catergory, parentElement, template) {
@@ -14,8 +14,9 @@ export default class ShoppingCart {
         this.getLocalStorage();
         let list = this.dataArray;
         for (let i = 0; i < localStorage.length; i++) {
-            console.log(list);
-            renderListWithTemplate(this.template, this.parentElement, list[i], this.prepareTemplate);
+            //console.log(list);
+            renderWithTemplate(this.template, this.parentElement, list[i], this.prepareTemplate);
+            //console.log(list[i]);
         }
     }
 
@@ -27,14 +28,13 @@ export default class ShoppingCart {
       }
     
     prepareTemplate(clone, product) {
-        console.log(product);
+        //console.log(product);
         clone.querySelector("a").href += product.Id;
         clone.querySelector("img").src = product.Image;
-        clone.querySelector(".card__brand").textContent = product.Brand.Name;
-        clone.querySelector(".card__name").textContent = product.NameWithoutBrand;
-        clone.querySelector(".product-card__price").textContent += product.ListPrice;
+        clone.querySelector(".card__name").textContent = product.Name;
+        clone.querySelector(".cart-card__price").textContent = `$${product.ListPrice}`;
+        clone.querySelector(".cart-card__color").textContent = product.Colors[0].ColorName;
         return clone;
-        // clone[img].setAttribute('src',product.Image)
     }
 }
 
@@ -43,8 +43,8 @@ let template = document.querySelector('#cart-template');
 let shoppingCart = new ShoppingCart('tents',parent,template);
 shoppingCart.init();
 
-loadHeaderFooter('.header', '../partials/header.html');
-loadHeaderFooter('.footer', '../partials/footer.html');
+loadHeaderFooter('../partials/header.html', '.header');
+loadHeaderFooter('../partials/footer.html', '.footer');
 
 
 

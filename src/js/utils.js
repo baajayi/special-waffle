@@ -38,7 +38,7 @@ export async function renderListWithTemplate(
 ) {
   let filterArray = [""];
   list = list;
-  console.log(`Aaron ${list}`);
+  //console.log(`Aaron ${list}`);
 
   list.forEach((element) => {
     let exists = false;
@@ -48,6 +48,7 @@ export async function renderListWithTemplate(
     if (exists) {
       exists = false;
     } else {
+      console.log(template);
       const clone = template.content.cloneNode(true);
       const preparedClone = callback(clone, element);
       parentElement.appendChild(preparedClone);
@@ -64,7 +65,7 @@ export async function renderWithTemplate(
 ) {
   let clone = template.content.cloneNode(true);
   if (callback) {
-    placer = callback(clone, data);
+    let clone = callback(clone, data);
   }
   parentElement.appendChild(clone);
 }
@@ -91,7 +92,7 @@ export async function loadHeaderFooter(filePath, classIdName) {
   //const headerHTML = loadTemplate("../partials/header.html");
   //const footerHTML = loadTemplate("../partials/footer.html");
   
-  let place = await document.querySelector(`${classIdName}`);
+  let place = document.querySelector(`${classIdName}`);
   //const header = document.querySelector(".header");
   //const footer = document.querySelector(".footer");
 
