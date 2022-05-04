@@ -23,11 +23,11 @@ export function setClick(selector, callback) {
 }
 
 //product pull from HTML URL parameter
-export function getParams() {
+export function getParams(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get("product");
-  return product;
+  return urlParams.get(param);
+  
 }
 export function renderListWithTemplate(
   template,

@@ -9,7 +9,7 @@ export default class ProductList {
     this.filterArray = [];
   }
   async init() {
-    const list = await this.datasource;
+    const list = await this.dataSource.getData(this.category);
     // this.renderList(list)
     renderListWithTemplate(
       this.template,
