@@ -120,6 +120,22 @@ button {
 }
 .products {
   padding: 0.5em;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: repeat(4,1fr);
+  max-width: 650px;
+  margin: 30px auto;
+}
+.products div a{
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.products div img{
+  width: 100%;
+
 }
 .product-list {
   display: flex;
