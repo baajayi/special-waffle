@@ -1,57 +1,18 @@
-import { setLocalStorage } from "./utils.js";
-
-export default class ProductDetails {
-  constructor(productId, dataSource) {
-    this.productId = productId;
-    this.products = {};
-    this.dataSource = dataSource;
-    this.i = localStorage.length;
-  }
-
-  async init() {
-    // use our datasource to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-    // once we have the product details we can render out the HTML
-    // once the HTML is rendered we can add a listener to Add to Cart button
-    // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-    this.products = await this.dataSource.findProductById(this.productId);
-
-    document.querySelector("main").innerHTML = this.renderProductDetails(
-      this.products
-    );
-    document
-      .getElementById("addToCart")
-      .addEventListener("click", this.addToCart.bind(this));
-  }
-
-  //setLocalStorage(key, data) {
-  //   localStorage.setItem(key, JSON.stringify(data));
-  //  }
-
-  addToCart() {
-    this.i += 1;
-    //const product = this.dataSource.find((item) => item.Id === this.productId);
-    setLocalStorage(localStorage.length, this.products);
-  }
-
-  renderProductDetails(product) {
-    //method to generate the HTML to display our product.
-    return `<section class="product-detail">
-        <h3>${product.Brand.Name}</h3>
-        <h2 class="divider">${product.Name}</h2>
+var o=(r,t,i)=>new Promise((c,e)=>{var l=d=>{try{a(i.next(d))}catch(s){e(s)}},n=d=>{try{a(i.throw(d))}catch(s){e(s)}},a=d=>d.done?c(d.value):Promise.resolve(d.value).then(l,n);a((i=i.apply(r,t)).next())});import{setLocalStorage as u}from"./utils.js";export default class h{constructor(t,i){this.productId=t,this.products={},this.dataSource=i,this.i=localStorage.length}init(){return o(this,null,function*(){this.products=yield this.dataSource.findProductById(this.productId),document.querySelector("main").innerHTML=this.renderProductDetails(this.products),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(){this.i+=1,u(localStorage.length,this.products)}renderProductDetails(t){return`<section class="product-detail">
+        <h3>${t.Brand.Name}</h3>
+        <h2 class="divider">${t.Name}</h2>
         <img
           class="divider"
-          src=${product.Image}
-          alt=${product.Name}
+          src=${t.Images.PrimaryLarge}
+          alt=${t.Name}
         />
 
-        <p class="product-card__price">${product.ListPrice}</p>
-        <p class="product__color">${product.Colors[0].ColorName}</p>
+        <p class="product-card__price">${t.ListPrice}</p>
+        <p class="product__color">${t.Colors[0].ColorName}</p>
         <p class="product__description">
-        ${product.DescriptionHtmlSimple}
+        ${t.DescriptionHtmlSimple}
         </p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.productId}">Add to Cart</button>
         </div>
-      </section>`;
-  }
-}
+      </section>`}}
