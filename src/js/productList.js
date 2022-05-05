@@ -1,5 +1,4 @@
-import { renderListWithTemplate } from './utils.js';
-import ProductData from './productData.js';
+import { renderListWithTemplate } from "./utils.js";
 
 export default class ProductList {
   constructor(category, listElement, datasource, template) {
@@ -10,9 +9,6 @@ export default class ProductList {
     this.filterArray = [];
   }
   async init() {
-    let example = new ProductData().getData('tents')
-    console.log(this.datasource instanceof ProductData)
-    console.log(await example)
     const list = await this.datasource.getData(this.category);
     // this.renderList(list)
     renderListWithTemplate(
@@ -32,21 +28,21 @@ export default class ProductList {
   //     });
   // }
   prepareTemplateOld(clone, product) {
-    clone.querySelector('a').href += product.Id;
-    clone.querySelector('img').src = product.Image;
-    clone.querySelector('.card__brand').textContent = product.Brand.Name;
-    clone.querySelector('.card__name').textContent = product.NameWithoutBrand;
-    clone.querySelector('.product-card__price').textContent +=
+    clone.querySelector("a").href += product.Id;
+    clone.querySelector("img").src = product.Image;
+    clone.querySelector(".card__brand").textContent = product.Brand.Name;
+    clone.querySelector(".card__name").textContent = product.NameWithoutBrand;
+    clone.querySelector(".product-card__price").textContent +=
       product.ListPrice;
     return clone;
     // clone[img].setAttribute('src',product.Image)
   }
   prepareTemplate(clone, product) {
-    clone.querySelector('a').href += product.Id;
-    clone.querySelector('img').src = product.Images.PrimaryLarge;
-    clone.querySelector('.card__brand').textContent = product.Brand.Name;
-    clone.querySelector('.card__name').textContent = product.NameWithoutBrand;
-    clone.querySelector('.product-card__price').textContent +=
+    clone.querySelector("a").href += product.Id;
+    clone.querySelector("img").src = product.Images.PrimaryMedium;
+    clone.querySelector(".card__brand").textContent = product.Brand.Name;
+    clone.querySelector(".card__name").textContent = product.NameWithoutBrand;
+    clone.querySelector(".product-card__price").textContent +=
       product.ListPrice;
     return clone;
     // clone[img].setAttribute('src',product.Image)

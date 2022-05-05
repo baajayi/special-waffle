@@ -1,2 +1,2 @@
-import { loadHeaderFooter } from './utils.js';
-loadHeaderFooter('#checkout-header', '#checkout-footer');
+import { loadHeaderFooter } from "./utils.js";
+loadHeaderFooter("#checkout-header", "#checkout-footer");

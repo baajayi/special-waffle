@@ -1,4 +1,4 @@
-import { setLocalStorage } from './utils.js';
+import { setLocalStorage } from "./utils.js";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -14,15 +14,12 @@ export default class ProductDetails {
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
     this.products = await this.dataSource.findProductById(this.productId);
-    console.log(this.products);
-    console.log(this.dataSource);
-    document.querySelector('main').innerHTML = this.renderProductDetails(
+    document.querySelector("main").innerHTML = this.renderProductDetails(
       this.products
     );
-    console.log(this.products);
     document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addToCart.bind(this));
+      .getElementById("addToCart")
+      .addEventListener("click", this.addToCart.bind(this));
   }
 
   //setLocalStorage(key, data) {
@@ -42,7 +39,7 @@ export default class ProductDetails {
         <h2 class="divider">${product.Name}</h2>
         <img
           class="divider"
-          src=${product.Image}
+          src=${product.Images.PrimaryLarge}
           alt=${product.Name}
         />
 
