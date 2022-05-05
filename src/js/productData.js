@@ -4,21 +4,21 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
-    throw new Error("Bad Response");
+    throw new Error('Bad Response');
   }
 }
 
 export default class ProductData {
-  constructor() {
+  // constructor() {
 
-  }
+  // }
 
   getData(category) {
     //fetch(baseURL + `products/search/${category}`)
     //            .then(convertToJson).then((data) => data.Result);
     //console.log(data.Result);
     return fetch(baseURL + `products/search/${category}`)
-                .then(convertToJson).then((data) => data.Result);
+                .then(convertToJson).then((info) => info.Result);
 
                 //fetch(this.path)
     //     .then(convertToJson)

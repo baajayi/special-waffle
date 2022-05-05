@@ -15,11 +15,11 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
 
 //product pull from HTML URL parameter
@@ -36,7 +36,7 @@ export function renderListWithTemplate(
   callback,
   callbackTwo
 ) {
-  let filterArray = [""];
+  let filterArray = [''];
   list.forEach((element) => {
     let exists = false;
     filterArray.forEach((i) => {
@@ -91,18 +91,20 @@ export async function renderWithTemplate(
   if (callback) {
     clone = callback(clone, data);
   }
+  console.log(parentElement)
+  console.log(clone)
   parentElement.appendChild(clone);
 }
 
 export async function loadTemplate(path) {
-  const data = await fetch(path).then((response) => response.text());
-  let newTemplate = document.createElement("template");
-  newTemplate.innerHTML = data;
+  const templateData = await fetch(path).then((response) => response.text());
+  let newTemplate = document.createElement('template');
+  newTemplate.innerHTML = templateData;
   return newTemplate;
 }
 export async function loadHeaderFooter(header, footer) {
-  let headerTemplate = await loadTemplate("../partials/header.html");
-  let footerTemplate = await loadTemplate("../partials/footer.html");
+  let headerTemplate = await loadTemplate('../partials/header.html');
+  let footerTemplate = await loadTemplate('../partials/footer.html');
   let headerElement = document.querySelector(header);
   let footerElement = document.querySelector(footer);
   renderWithTemplate(headerTemplate, headerElement);

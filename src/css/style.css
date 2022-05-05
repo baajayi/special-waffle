@@ -120,20 +120,22 @@ button {
 }
 .products {
   padding: 0.5em;
+}
+#product-types{
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(4,1fr);
   max-width: 650px;
   margin: 30px auto;
 }
-.products div a{
+#product-types div a{
   display: block;
   text-align: center;
   text-decoration: none;
   color: black;
   font-weight: bold;
 }
-.products div img{
+#product-types div img{
   width: 100%;
 
 }

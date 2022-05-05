@@ -1,12 +1,13 @@
-import ProductData from "./productData.js";
-import ProductDetails from "./productDetails";
-import { getParams } from "./utils.js";
-const dataSource = new ProductData("tents");
+import ProductData from './productData.js';
+import ProductDetails from './productDetails';
+import { getParams } from './utils.js';
+const dataSource = new ProductData('tents');
 
 //console.log(dataSource);
 //console.log(dataSource.getData());
 
-const productId = getParams("products");
+const productId = getParams('product');
+console.log(productId)
 //const prodTable = dataSource.findProductById(productId);
 
 const product = new ProductDetails(productId, dataSource);
