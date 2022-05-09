@@ -7,9 +7,10 @@ export default class ShoppingCart {
     this.parentElement = parentElement;
     this.datasource = [];
     this.template = template;
+    this.total = 0;
   }
   init() {
-    this.getLocalStorage();
+    this.total = this.getLocalStorage();
     const list = this.datasource;
     for (let i = 0; i < localStorage.length; i++) {
       renderWithTemplate(
@@ -24,7 +25,9 @@ export default class ShoppingCart {
     for (let i = 0; i < localStorage.length; i++) {
       let localStorageItem = JSON.parse(localStorage.getItem(i));
       this.datasource.push(localStorageItem);
+      this.total += localStorageItem.FinalPrice;
     }
+    return this.total;
   }
   prepareTemplate(clone, product) {
     clone.querySelector("a").href += product.Id;
@@ -37,6 +40,12 @@ export default class ShoppingCart {
     clone.querySelector(".cart-card__price").textContent = product.ListPrice;
     return clone;
   }
+  displayTotal() {
+    if (localStorage.length > 0) {
+      document.getElementById("hide").style.display = "block";
+      document.getElementById("total").innerHTML = "$" + this.total.toFixed(2);
+    }
+  }
 }
 
 let parent = document.querySelector(".product-list");
@@ -44,3 +53,4 @@ let templateId = document.querySelector("#cart-template");
 let shoppingCart = new ShoppingCart("tents", parent, templateId);
 shoppingCart.init();
 loadHeaderFooter("#cart-header", "#cart-footer");
+shoppingCart.displayTotal();
