@@ -7,6 +7,7 @@ export default class ShoppingCart {
     this.parentElement = parentElement;
     this.datasource = [];
     this.template = template;
+    this.total=0;
   }
   init() {
     this.getLocalStorage();
@@ -19,6 +20,7 @@ export default class ShoppingCart {
         this.prepareTemplate
       );
     }
+    this.displayTotal()
   }
   getLocalStorage() {
     for (let i = 0; i < localStorage.length; i++) {
@@ -33,9 +35,20 @@ export default class ShoppingCart {
     clone.querySelector(".card__name").textContent = product.NameWithoutBrand;
     clone.querySelector(".cart-card__color").textContent =
       product.Colors[0].ColorName;
-    clone.querySelector(".cart-card__quantity").textContent = "qty: 1";
+    clone.querySelector(".cart-card__quantity").textContent += 1;
     clone.querySelector(".cart-card__price").textContent = product.ListPrice;
     return clone;
+  }
+  displayTotal(){
+    if (localStorage.length===0){
+      document.querySelector('.cart-total-and-Btn').classList.toggle('hide',true);
+      console.log('something')
+    }
+    else{
+      document.querySelector('.cart-total-and-Btn').classList.toggle('hide',false);
+      console.log('empty');
+      document.querySelector('.cart-total').textContent+=`$${this.total}`;
+    }
   }
 }
 

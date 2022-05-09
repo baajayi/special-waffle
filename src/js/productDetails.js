@@ -1,4 +1,5 @@
 import { setLocalStorage } from "./utils.js";
+import { getLocalStorage } from "./utils.js";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -28,8 +29,16 @@ export default class ProductDetails {
 
   addToCart() {
     this.i += 1;
+    // let exists = false;
+    // for (let i=0;i < localStorage.length;i++){
+    //   if (this.products===getLocalStorage(i)){
+    //     exists = true;
+    //   }
+    // }
+    // if(this.products in localStorage.getItem)
     //const product = this.dataSource.find((item) => item.Id === this.productId);
     setLocalStorage(localStorage.length, this.products);
+    // exists = false;
   }
 
   renderProductDetails(product) {
