@@ -139,10 +139,10 @@ button {
   width: 100%;
 }
 .product-list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  display: block;
+  justify-content: center;
   list-style-type: none;
+  margin: auto;
   padding: 0;
 }
 .product-list a {
@@ -239,4 +239,56 @@ footer {
 
 #hide {
   display: none;
+}
+
+.cart-total {
+  text-align: right;
+  margin-right: 35px;
+}
+
+.checkout button {
+  margin-right: 35px;
+}
+
+.checkout a {
+  text-decoration: none;
+}
+
+.form {
+  width: 80vw;
+  max-width: 400px;
+  margin: auto;
+}
+
+label{
+  display: block;
+}
+
+.checkout-header {
+  text-align: center;
+}
+
+.submitOrder {
+  margin-left: 0;
+}
+
+.form label {
+  margin-top: 12px;
+}
+
+fieldset p {
+  display: flex;
+}
+
+.price {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.orderTotal {
+  font-weight: bold;
+}
+
+fieldset {
+  margin: 10px;
 }

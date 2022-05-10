@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sleep Outside | Checkout</title>
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body>
-    <header class="divider" id="checkout-header"></header>
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
-    </main>
-    <footer id="checkout-footer"></footer>
-    <script src="../js/checkout.js" type="module"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sleep Outside | Checkout</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="/js/checkout.js" type="module"></script>
+</head>
+
+<body>
+  <header class="divider" id="checkout-header"></header>
+  <main class="divider">
+    <section class="checkout-header">
+      <h2>Review & Place your Order</h2>
+    </section>
+    <section class="form">
+      <form>
+        <fieldset>
+          <legend>Shipping</legend>
+          <label for="fname">First name</label>
+          <input type="text" name="fname" placeholder="Jane">
+          <label for="lname">Last name</label>
+          <input type="text" name="lname" placeholder="Smith">
+          <label for="street">Street</label>
+          <input type="text" name="street" placeholder="355 N. 10th St.">
+          <label for="city">City</label>
+          <input type="text" name="city" placeholder="San Jose">
+          <label for="state">State</label>
+          <input type="text" name="state" placeholder="Ca">
+          <label for="zip">Zip</label>
+          <input type="text" name="zip" placeholder="94088" pattern="[0-9]*" inputmode="numeric">
+        </fieldset>
+        <fieldset class="field2">
+          <legend>Payment</legend>
+          <label for="cardnumber">Card Number</label>
+          <input type="text" name="cardnumber" placeholder="5600 4500 2222 2300" pattern="[0-9]*" inputmode="numeric">
+          <label for="expiration">Expiration</label>
+          <input name="expiration" type="text" placeholder="12/25" pattern="[0-9]*" inputmode="numeric">
+          <label for="securitycode">Security Code</label>
+          <input name="securitycode" type="text" placeholder="251"pattern="[0-9]*" inputmode="numeric">
+        </fieldset>
+        <fieldset class="checkoutSummary">
+          <legend>Order Summary</legend>
+          <p>Item Subtotal(<span id="numItems"></span> items):  <span class="price" id="checkoutTotal"></span></p>
+          <p>Shipping Estimate: <span class="price" id="shipping"></span></p>
+          <p>Tax: <span class="price" id="tax"></span></p>
+          <p class="orderTotal">Order Total: <span class="price" id="total"></span></p>
+          <button type="submit" class="submitOrder">Submit</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+  <footer id="checkout-footer"></footer>
+  
+</body>
+
 </html>
