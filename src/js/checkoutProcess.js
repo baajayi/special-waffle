@@ -5,11 +5,11 @@ export default class CheckoutProcess {
     constructor(key, tag) {
         this.key = key;
         this.tag = tag;
-        this.list = [];
         this.subTotal = 0;
         this.shipping = 0;
         this.tax = 0;
         this.total = 0;
+        this.numItems = 0;
 
     }
     init() {
@@ -17,14 +17,13 @@ export default class CheckoutProcess {
     }
 
     calcSubtotal() {
-        let count = 0;
         let product = [];
         for (let i = 0; i < localStorage.length; i++){
             product = getLocalStorage(i);
-            count++;
+            this.numItems++;
             this.subTotal += product.FinalPrice;   
         }
-        document.getElementById('numItems').innerHTML = count;
+        document.getElementById('numItems').innerHTML = this.numItems;
         this.calcTotal();
     }
     calcTotal(){
@@ -49,4 +48,15 @@ export default class CheckoutProcess {
         document.getElementById('total').innerHTML = "$" + this.total.toFixed(2);
 
     }
+    // async checkout() {
+    //     const form = document.forms['checkout'];
+    //     console.log("hello");
+    //     const jsonForm = createJSON(form);
+    //     jsonForm.orderDate = new Date();
+    //     jsonForm.total = this.total;
+    //     jsonForm.shipping = this.shipping;
+    //     jsonForm.tax = this.tax;
+    //     jsonForm.numItems = this.numItems;
+    //     console.log(jsonForm.tax);
+    // }
 }
