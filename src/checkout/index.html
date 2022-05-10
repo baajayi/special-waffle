@@ -12,6 +12,49 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <form>
+        <fieldset>
+          <legend>Shipping</legend>
+          <label for="first-name">First name: 
+            <input type="text" id ="first-name" name="first-name" pattern="[a-zA-Z]+" maxlength="15" required>
+          </label>
+          <label for="last-name">Last name: 
+            <input type="text" id ="last-name" name="last-name" pattern="[a-zA-Z]+" maxlength="15" required>
+          </label>
+          <label for="street">Street: 
+            <input type="text" id="street" name="street" required>
+          </label>
+          <label for="city">City: 
+            <input type="text" id ="city" name="city" pattern="[a-zA-Z]+" required>
+          </label>
+          <label for="state">State: 
+            <input type="text" id ="state" name="state" required>
+          </label>
+          <label for="zip">Zip: 
+            <input type="number" id ="zip" name="zip" required>
+          </label>
+        </fieldset>
+        <fieldset>
+        <legend>Credit Card</legend>
+        <label for="card-number">Card Number: 
+          <input type="number" id="card-number" name="card-number" max="9999999999999999999" placeholder="xxxx xxxx xxxx xxxx" required>
+        </label>
+        <label for="expiration">Expiration Date: 
+          <input type="month" id="expiration" name="expiration" required>
+        </label>
+        <label for="security-code">Security Code:
+          <input type="number" id="security-code" name="security-code" max="999" placeholder="xxx" required>
+        </label>
+        </fieldset>
+        <fieldset>
+          <legend>Order Summary</legend>
+          <p>Item Subtotal<span id="subtotal"></span></p>
+          <p>Shipping Estimate<span id="shipping-estimate"></span></p>
+          <p>Tax<span id="tax"></span></p>
+          <p><strong>Order Total</strong><span id="order-total"></span></p>
+        </fieldset>
+        <button type="submit">Checkout</button>
+      </form>
     </main>
     <footer id="checkout-footer"></footer>
     <script src="../js/checkout.js" type="module"></script>
