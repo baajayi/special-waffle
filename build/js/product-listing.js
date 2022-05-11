@@ -1,5 +1,5 @@
 import o from "./productList.js";
-import e from "./productData.js";
+import e from "./externalServices.js";
 import { loadHeaderFooter as r, getParams as c } from "./utils.js";
 r("#main-header", "#main-footer");
 const t = c("category"),

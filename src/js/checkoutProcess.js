@@ -1,4 +1,29 @@
 import { getLocalStorage } from './utils.js';
+import ExternalServices from './ExternalServices.js';
+
+const services = new ExternalServices();
+
+function createJSON(form){
+    const formData = new FormData(form), convertedJSON = {};
+    formData.forEach(function (value, key) {
+        convertedJSON[key] = value;
+      });
+    
+      return convertedJSON;
+}
+
+function packageItems() {
+    const simpleList = localStorage.map((item) => {
+        console.log(item);
+        return {
+            id: item.Id,
+            price: item.FinalPrice,
+            name: item.Name,
+            quantity: 1,
+        };
+    });
+    return simpleList;
+}
 
 export default class CheckoutProcess {
 
@@ -13,22 +38,26 @@ export default class CheckoutProcess {
 
     }
     init() {
+        for (let i = 0; i < localStorage.length; i++) {
+            this.list.append(i);
+        }
+        console.log(this.list);
         this.calcSubtotal();
     }
 
     calcSubtotal() {
         let product = [];
-        for (let i = 0; i < localStorage.length; i++){
+        for (let i = 0; i < localStorage.length; i++) {
             product = getLocalStorage(i);
             this.numItems++;
-            this.subTotal += product.FinalPrice;   
+            this.subTotal += product.FinalPrice;
         }
         document.getElementById('numItems').innerHTML = this.numItems;
         this.calcTotal();
     }
-    calcTotal(){
+    calcTotal() {
         //Shipping estimate
-        if (localStorage.length == 1){
+        if (localStorage.length == 1) {
             this.shipping = 10;
         }
         else {
@@ -48,15 +77,18 @@ export default class CheckoutProcess {
         document.getElementById('total').innerHTML = "$" + this.total.toFixed(2);
 
     }
-    // async checkout() {
-    //     const form = document.forms['checkout'];
-    //     console.log("hello");
-    //     const jsonForm = createJSON(form);
-    //     jsonForm.orderDate = new Date();
-    //     jsonForm.total = this.total;
-    //     jsonForm.shipping = this.shipping;
-    //     jsonForm.tax = this.tax;
-    //     jsonForm.numItems = this.numItems;
-    //     console.log(jsonForm.tax);
-    // }
+    async checkout() {
+        const form = document.forms['checkout'];
+        console.log("hello");
+        const jsonForm = createJSON(form);
+        console.log(jsonForm);
+        jsonForm.orderDate = new Date();
+        jsonForm.total = this.total;
+        jsonForm.shipping = this.shipping;
+        jsonForm.tax = this.tax;
+        jsonForm.numItems = this.numItems;
+        jsonForm.items = packageItems();
+        console.log(jsonForm.tax);
+    }
 }
+

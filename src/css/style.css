@@ -120,6 +120,7 @@ button {
 }
 .products {
   padding: 0.5em;
+  margin: auto;
 }
 #product-types {
   display: grid;
@@ -140,11 +141,15 @@ button {
 }
 .product-list {
   display: block;
-  justify-content: center;
+  justify-items: center;
   list-style-type: none;
   margin: auto;
-  padding: 0;
 }
+
+#cart-list {
+  display: block;
+}
+
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
@@ -229,6 +234,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+  .product-list{
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
