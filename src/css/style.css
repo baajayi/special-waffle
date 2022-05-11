@@ -24,6 +24,8 @@ body {
 }
 img {
   max-width: 100%;
+  margin: 0;
+  padding: 1rem;
 }
 header {
   display: flex;
@@ -217,6 +219,95 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
+/*--------Checkout / Cart Pages------------*/
+.paymentInfo {
+  border: 5px solid black;
+  color: black;
+  padding: .5rem;
+  max-width: 550px;
+  margin: 0 1rem 1rem 1rem;
+  background-color: var(--secondary-color);
+}
+
+fieldset {
+  border: 2px solid var(--tertiary-color);
+}
+
+.formSubName {
+  padding: 0 0 0 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formSub {
+  padding: 1rem 0 1rem 0;
+  display: block;
+  flex-wrap: wrap;
+}
+
+.formShipping {
+  padding-bottom: 1rem;
+}
+
+.finalButtons {
+  display: flex;
+  padding: 1rem;
+  justify-items: left;
+  align-items: center;
+}
+
+.finalButtons button a, .finalButtons button {
+  text-decoration: none;
+  color: var(--secondary-color);
+  background-color: white;
+}
+
+.finalButtons button a {
+  height: 100%;
+  width: 100%;
+  padding: 0.5em 2em;
+}
+
+.finalButtons button {
+  padding: 0;
+}
+
+.legend {
+  color: white;
+  font-size: 1.5rem;
+  padding-top: 1rem;
+}
+
+.subLegend {
+  color: white;
+}
+
+.checkInput {
+  height: 2.5rem;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.2rem;
+}
+
+.checkInputCC {
+  height: 2rem;
+  
+  font-size: 1.2rem;
+}
+
+.orderSummary {
+  border: 2px solid #a4b8c4;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.orderLines {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-family: var(--font-body);
+}
+
 
 @media screen and (min-width: 500px) {
   body {

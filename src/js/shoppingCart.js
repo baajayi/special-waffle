@@ -37,10 +37,29 @@ export default class ShoppingCart {
     clone.querySelector(".cart-card__price").textContent = product.ListPrice;
     return clone;
   }
+  getCartQuantity(classToShow, classToInsertHTML) {
+    let cartQuantity = localStorage.length;
+    let toShow = document.querySelector(`.${classToShow}`);
+    let toInsert = document.querySelector(`.${classToInsertHTML}`);
+    
+    if (cartQuantity > 0) {
+      toShow.setAttribute('class', 'cartTotalShow');
+      toInsert.innerHTML = `Total Items: ${cartQuantity}`;
+    } else {
+      toShow.setAttribute('class', 'cartTotalShowEmpty');
+      toInsert.setAttribute('class', 'emptyCart');
+      toInsert.innerHTML = `Shopping Cart Empty`;
+
+    }
+  }
 }
+
+
 
 let parent = document.querySelector(".product-list");
 let templateId = document.querySelector("#cart-template");
 let shoppingCart = new ShoppingCart("tents", parent, templateId);
 shoppingCart.init();
 loadHeaderFooter("#cart-header", "#cart-footer");
+shoppingCart.getCartQuantity("cartTotalHide", "cartTotal");
+
