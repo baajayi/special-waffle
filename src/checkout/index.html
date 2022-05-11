@@ -12,8 +12,69 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <section class="paymentInfo"> 
+        <form name="checkoutForm" class="checkoutForm" id="checkForm">
+          <fieldset id="formShipping">
+            <legend class="legend">Shipping</legend>
+            <div class="formSubName">  
+              <label for="fname"></label>
+                <input class="checkInput" type="text" id="fname" name="fname" placeholder="First Name" required><br>   
+              <label for="lname"></label>
+                <input class="checkInput" type="text" id="lname" name="lname" placeholder="Last Name" required><br>
+            </div>
+            <div class="formSub">
+              <legend class="subLegend">Address</legend>
+              <label for="street"></label>
+                <input class="checkInput" type="text" id="street" name="street" placeholder="Street Address" required>    
+              <label for="city"></label>
+                <input class="checkInput" type="text" id="city" name="city" placeholder="City" required>
+              <label for="state"></label>
+                <input class="checkInput" type="text" id="state" name="state" placeholder="State" required>
+              <label for="zip"></label>
+                <input class="checkInput" type="text" id="zip" name="zip" placeholder="Zip Code" required>
+            </div>  
+          </fieldset>
+          <fieldset class="formPay">
+            <legend class="legend">Payment</legend>
+            <legend class="subLegend">Credit Card</legend>
+            <label for="cardNumber"></label>
+              <input class="checkInputCC" type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" value="1234123412341234 ">
+            <label for="code"></label>
+              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" value="123">
+            <div class="formSub">
+              <legend class="subLegend">Card Expiry</legend>
+              <label for="expiration"></label>
+              <input class="checkInput" type="month" name="expiration" id="expiration" value="2028-06">
+            </div>
+          </fieldset>    
+        
+        <fieldset class="orderSummary">
+          <legend class="legend">Order Summary</legend>
+          <div class="orderLines">
+            <h2 id="subtotalLabel"></h2>
+            <h3 id="subtotalAmount"></h3>
+          </div>
+          <div class="orderLines">
+            <h2 id="shippingLabel"></h2>
+            <h3 id="shippingAmount"></h3>
+          </div>
+          <div class="orderLines">
+            <h2 id="taxLabel"></h2>
+            <h3 id="taxAmount"></h3>
+          </div>
+          <div class="orderLines">
+            <h2 id="orderLabel"></h2>
+            <h3 id="orderAmount"></h3>
+        </fieldset>
+        
+        <div class="finalButtons">
+          <button  id="checkoutSubmit" type="submit"><a href="#">Checkout</a></button>
+        </div>
+      </section>
+    </form>
     </main>
     <footer id="checkout-footer"></footer>
     <script src="../js/checkout.js" type="module"></script>
+    <script src="../js/checkoutProcess.js" type="module"></script>
   </body>
 </html>
