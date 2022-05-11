@@ -240,3 +240,33 @@ footer {
 #hide {
   display: none;
 }
+
+form {
+  display: block;
+  width: 100%;
+  max-width: 20em;
+  margin: auto;
+}
+fieldset {
+  display: flex;
+  flex-flow: column;
+  margin: 2em;
+}
+input {
+  height: 3em;
+}
+input:required {
+  border-left: 4px solid #f0a868;
+}
+input:required:valid {
+  border-left: 4px solid blue;
+}
+label {
+  margin-top: 1em;
+}
+button {
+  margin-top: -1em;
+}
+.checkout-summary span {
+  margin-right: 0;
+}

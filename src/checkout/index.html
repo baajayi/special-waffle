@@ -7,13 +7,53 @@
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <header class="divider" id="checkout-header"></header>
+    <header class="divider" id="main-header"></header>
     <main class="divider">
       <section class="products">
         <h2>Review & Place your Order</h2>
+        <form action="" method="post">
+          <fieldset>
+            <legend>Shipping</legend>
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" required>
+            <label for="lname">Last Name</label>
+            <input type="text" name="fname" required>
+            <label for="sname">Street </label>
+            <input type="text" name="sname" required>
+            <label for="cname">City </label>
+            <input type="text" name="cname" required>
+            <label for="state">State</label>
+            <input type="text" name="state" required>
+            <label for="zcode">Zip Code</label>
+            <input type="text" name="fname" required pattern="^[0-9]{5}(?:-[0-9]{4})?$">
+          </fieldset>
+          
+          <fieldset> 
+            <legend>Payment Info</legend>
+            <label for="cnumber">Card Number</label>
+            <input type="number" name="cnumber" required pattern="^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|↵
+            (6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|↵
+            (3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$">
+            <label for="cexpiration">Expiration</label>
+            <input type="number" name="cexpiration" required pattern="^(0[1-9]|1[0-2])\/?([0-9]{2})$" >
+            <label for="scode">Security Code</label>
+            <input type="number" name="scode" required pattern="^[0-9]{3, 4}$">
+
+          </fieldset>
+          <fieldset class="checkout-summary">
+            <legend>Order Summary</legend>
+            <label for="subtotal">Item Subtotal(<span id="cart-count"></span>)</label> <span id="subtotal"></span>
+            <label for="shipping">Shipping Estimate</label> <span id="shipping"></span>
+            <label for="tax">Tax</label> <span id="tax"></span>
+            <label for="ototal"><strong> Order Total</strong></label> <span id="total"></span>
+            
+            
+          </fieldset>
+          <button id="sbmtbtn">Checkout</button>
+        </form>
       </section>
     </main>
-    <footer id="checkout-footer"></footer>
+    <footer id="main-footer"></footer>
     <script src="../js/checkout.js" type="module"></script>
   </body>
 </html>
