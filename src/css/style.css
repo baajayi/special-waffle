@@ -126,7 +126,7 @@ button {
 #product-types {
   display: grid;
   gap: 50px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   max-width: 650px;
   margin: 30px auto;
 }
@@ -219,6 +219,12 @@ button {
   grid-row: 2;
   grid-column: 3;
 }
+
+#cartButton {
+  color: white;
+  background-color: #525b0f;
+}
+
 /*--------Checkout / Cart Pages------------*/
 .paymentInfo {
   border: 5px solid black;
@@ -307,7 +313,7 @@ fieldset {
   color: white;
   font-family: var(--font-body);
 }
-
+/*---------------------------------------- media queries*/
 
 @media screen and (min-width: 500px) {
   body {
@@ -320,6 +326,13 @@ fieldset {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+  #product-types {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 650px;
+    margin: 30px auto;
   }
 }
 

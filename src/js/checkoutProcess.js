@@ -1,5 +1,6 @@
 import { getLocalStorage } from "./utils.js";
 
+const postURL = "http://157.201.228.93:2992/checkout";
 
 export default class CheckoutProcess {
     constructor(key, value) {
@@ -79,7 +80,7 @@ export default class CheckoutProcess {
 
     getTax() {
         this.taxTotal = (this.shipping + this.subtotal) * 0.06;
-        console.log(this.taxTotal);
+        //console.log(this.taxTotal);
     }
 
 
