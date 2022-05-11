@@ -13,7 +13,7 @@
         <h2>Review & Place your Order</h2>
       </section>
       <section class="paymentInfo"> 
-        <form class="checkoutForm" action="#">
+        <form name="checkoutForm" class="checkoutForm" id="checkForm">
           <fieldset id="formShipping">
             <legend class="legend">Shipping</legend>
             <div class="formSubName">  
@@ -38,13 +38,13 @@
             <legend class="legend">Payment</legend>
             <legend class="subLegend">Credit Card</legend>
             <label for="cardNumber"></label>
-              <input class="checkInputCC" type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
+              <input class="checkInputCC" type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" value="1234123412341234 ">
             <label for="code"></label>
-              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" required>
+              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" value="123">
             <div class="formSub">
               <legend class="subLegend">Card Expiry</legend>
               <label for="expiration"></label>
-              <input class="checkInput" type="month" name="expiration" id="expiration" required>
+              <input class="checkInput" type="month" name="expiration" id="expiration" value="2028-06">
             </div>
           </fieldset>    
         

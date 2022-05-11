@@ -1,9 +1,13 @@
 const baseURL = "http://157.201.228.93:2992/";
+const postURL = "http://157.201.228.93:2992/checkout/";
 
-function convertToJson(res) {
+async function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
+    console.log(res);
+  
+    console.log("Res.ok failed: line 5 externalServices")
     throw new Error("Bad Response");
   }
 }
@@ -47,7 +51,8 @@ export default class ExternalServices {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload),
+
     }
-    return await fetch(baseURL + 'checkout/', options).then(convertToJson);
+    return await fetch(postURL, options).then(convertToJson);
   }
 }

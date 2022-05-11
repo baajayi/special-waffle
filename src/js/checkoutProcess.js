@@ -1,7 +1,7 @@
 import { getLocalStorage } from "./utils.js";
 import ExternalServices from "./externalServices";
 
-const postURL = "http://157.201.228.93:2992/checkout";
+
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
@@ -17,7 +17,7 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {
-    console.log(item);
+    //console.log(item);
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -135,7 +135,7 @@ export default class CheckoutProcess {
     }
 
     async checkout() {
-        const formElement = document.forms['checkout'];
+        const formElement = document.forms['checkoutForm'];
     
         const json = formDataToJSON(formElement);
         // add totals, and item details
@@ -144,12 +144,13 @@ export default class CheckoutProcess {
         json.tax = this.taxTotal;
         json.shipping = this.shipping;
         json.items = packageItems(this.cart);
-        console.log(json);
+        console.table(json);
         try {
           const res = await services.checkout(json);
           console.log(res);
         } catch (err) {
           console.log(err);
+          //console.log("TRY FAILED Line 153 Checkout process")
         }
       }
 }
