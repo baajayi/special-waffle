@@ -227,6 +227,8 @@ button {
 
 /*--------Checkout / Cart Pages------------*/
 .paymentInfo {
+  display: flex;
+  flex-direction: column;
   border: 5px solid black;
   color: black;
   padding: .5rem;
@@ -297,8 +299,7 @@ fieldset {
 
 .checkInputCC {
   height: 2rem;
-  
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .orderSummary {
@@ -333,6 +334,23 @@ fieldset {
     grid-template-columns: repeat(4, 1fr);
     max-width: 650px;
     margin: 30px auto;
+  }
+  .paymentInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 5px solid black;
+    color: black;
+    padding: .5rem;
+    max-width: 95%;
+    margin: 0 1rem 1rem 1rem;
+    background-color: var(--secondary-color);
+  }
+  .orderSummary {
+    margin-bottom: 0;
+  }
+  .finalButtons {
+    margin-top: 1rem;
+    grid-column: 1 / span2;
   }
 }
 

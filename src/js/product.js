@@ -1,4 +1,4 @@
-import ExternalServices from "./productData";
+import ExternalServices from "./externalServices";
 import ProductDetails from "./productDetails";
 import { getParams } from "./utils.js";
 
