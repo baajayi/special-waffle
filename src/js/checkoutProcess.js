@@ -1,6 +1,33 @@
 import { getLocalStorage } from "./utils.js";
+import ExternalServices from "./externalServices";
 
 const postURL = "http://157.201.228.93:2992/checkout";
+
+const services = new ExternalServices();
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
+function packageItems(items) {
+  const simplifiedItems = items.map((item) => {
+    console.log(item);
+    return {
+      id: item.Id,
+      price: item.FinalPrice,
+      name: item.Name,
+      quantity: 1,
+    };
+  });
+  return simplifiedItems;
+}
+
 
 export default class CheckoutProcess {
     constructor(key, value) {
@@ -15,7 +42,7 @@ export default class CheckoutProcess {
         this.total = 0.00;
         
         this.subtotalContent = '';
-        this.shippingContent = '';
+        this.shippingContent = 'Shipping:';
         this.taxContent = 'Tax:';
         this.orderContent = 'Order Total:';
 
@@ -32,9 +59,7 @@ export default class CheckoutProcess {
         //console.table(this.cart);
         this.calculateItemSummary();
         this.getSubTotal();
-        this.getShipping();
-        this.getTax();
-        this.displayOrderSummary();
+        
     }
 
     calculateItemSummary() {
@@ -51,13 +76,25 @@ export default class CheckoutProcess {
         };
     }
 
-
     getSubTotal() { //Get called at page load
         
         for (let i = 0; i < this.cart.length; i++){
             let itemPrice = this.cart[i].ListPrice;
             this.subtotal = this.subtotal + itemPrice;
         }
+
+        let subtotalLabel = document.getElementById("subtotalLabel");
+        let subtotalCost = document.getElementById("subtotalAmount");
+        let shippingLabel = document.getElementById("shippingLabel");
+        let taxLabel = document.getElementById("taxLabel");
+        let orderLabel = document.getElementById("orderLabel");
+        
+        subtotalLabel.innerHTML = this.subtotalContent;
+        subtotalCost.innerHTML = `$${this.subtotal.toFixed(2)}`;
+
+        shippingLabel.innerHTML = this.shippingContent;
+        taxLabel.innerHTML = this.taxContent;
+        orderLabel.innerHTML = this.orderContent;
     } 
 
     getShipping() {
@@ -83,30 +120,36 @@ export default class CheckoutProcess {
         //console.log(this.taxTotal);
     }
 
-
-    
     displayOrderSummary() { //Gets called after zip code entered
-        let subtotalLabel = document.getElementById("subtotalLabel");
-        let subtotalCost = document.getElementById("subtotalAmount");
-        let shippingLabel = document.getElementById("shippingLabel");
-        let shippingAmount = document.getElementById("shippingAmount");
-        let taxLabel = document.getElementById("taxLabel");
-        let taxAmount = document.getElementById("taxAmount");
-        let orderLabel = document.getElementById("orderLabel");
-        let orderAmount = document.getElementById("orderAmount");
-
-        subtotalLabel.innerHTML = this.subtotalContent;
-        subtotalCost.innerHTML = `$${this.subtotal.toFixed(2)}`;
-
-        shippingLabel.innerHTML = this.shippingContent;
-        shippingAmount.innerHTML = `$${this.shipping.toFixed(2)}`;
-
-        taxLabel.innerHTML = this.taxContent;
-        taxAmount.innerHTML = `$${this.taxTotal.toFixed(2)}`;
+        this.getShipping();
+        this.getTax();
         
+        
+        let shippingAmount = document.getElementById("shippingAmount");
+        let taxAmount = document.getElementById("taxAmount");
+        let orderAmount = document.getElementById("orderAmount");
+        shippingAmount.innerHTML = `$${this.shipping.toFixed(2)}`;
+        taxAmount.innerHTML = `$${this.taxTotal.toFixed(2)}`;
         this.total = this.subtotal + this.shipping + this.taxTotal;
-
-        orderLabel.innerHTML = this.orderContent;
         orderAmount.innerHTML = `$${this.total.toFixed(2)}`;
     }
+
+    async checkout() {
+        const formElement = document.forms['checkout'];
+    
+        const json = formDataToJSON(formElement);
+        // add totals, and item details
+        json.orderDate = new Date();
+        json.orderTotal = this.subtotal;
+        json.tax = this.taxTotal;
+        json.shipping = this.shipping;
+        json.items = packageItems(this.cart);
+        console.log(json);
+        try {
+          const res = await services.checkout(json);
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
 }

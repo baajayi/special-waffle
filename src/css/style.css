@@ -336,8 +336,7 @@ fieldset {
     margin: 30px auto;
   }
   .paymentInfo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    
     border: 5px solid black;
     color: black;
     padding: .5rem;
@@ -345,13 +344,26 @@ fieldset {
     margin: 0 1rem 1rem 1rem;
     background-color: var(--secondary-color);
   }
+  .formPay {
+    grid-column: 2;
+  }
+  .checkoutForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;      
+  }
   .orderSummary {
+    grid-column: span 2;
     margin-bottom: 0;
   }
   .finalButtons {
     margin-top: 1rem;
     grid-column: 1 / span2;
   }
+  .orderLines h2, .orderLines h3 {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
 }
 
 footer {

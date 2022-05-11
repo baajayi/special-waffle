@@ -17,37 +17,37 @@
           <fieldset id="formShipping">
             <legend class="legend">Shipping</legend>
             <div class="formSubName">  
-              <label for="fnameCO"></label>
-                <input class="checkInput" type="text" id="fnameCO" name="fnameCO" placeholder="First Name"><br>   
-              <label for="lnameCO"></label>
-                <input class="checkInput" type="text" id="lnameCO" name="lnameCO" placeholder="Last Name"><br>
+              <label for="fname"></label>
+                <input class="checkInput" type="text" id="fname" name="fname" placeholder="First Name" required><br>   
+              <label for="lname"></label>
+                <input class="checkInput" type="text" id="lname" name="lname" placeholder="Last Name" required><br>
             </div>
             <div class="formSub">
               <legend class="subLegend">Address</legend>
-              <label for="addressCO"></label>
-                <input class="checkInput" type="text" id="addressCO" name="addressCO" placeholder="Street Address">    
-              <label for="cityCO"></label>
-                <input class="checkInput" type="text" id="cityCO" name="cityCO" placeholder="City">
-              <label for="stateCO"></label>
-                <input class="checkInput" type="text" id="stateCO" name="stateCO" placeholder="State">
-              <label for="zipCO"></label>
-                <input class="checkInput" type="text" id="zipCO" name="zipCO" placeholder="Zip Code">
+              <label for="street"></label>
+                <input class="checkInput" type="text" id="street" name="street" placeholder="Street Address" required>    
+              <label for="city"></label>
+                <input class="checkInput" type="text" id="city" name="city" placeholder="City" required>
+              <label for="state"></label>
+                <input class="checkInput" type="text" id="state" name="state" placeholder="State" required>
+              <label for="zip"></label>
+                <input class="checkInput" type="text" id="zip" name="zip" placeholder="Zip Code" required>
             </div>  
           </fieldset>
-          <fieldset>
+          <fieldset class="formPay">
             <legend class="legend">Payment</legend>
             <legend class="subLegend">Credit Card</legend>
-            <label for="creditCard"></label>
-              <input class="checkInputCC" type="text" id="creditCard" name="creditCard" placeholder="Card Number">
-            <label for="creditCode"></label>
-              <input class="checkInputCC" type="number" id="creditCode" name="creditCode" min="100" max="999" placeholder="CVC">
+            <label for="cardNumber"></label>
+              <input class="checkInputCC" type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
+            <label for="code"></label>
+              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" required>
             <div class="formSub">
               <legend class="subLegend">Card Expiry</legend>
-              <label for="cardExpiry"></label>
-              <input class="checkInput" type="month" name="cardExpiry" id="cardExpiry">
+              <label for="expiration"></label>
+              <input class="checkInput" type="month" name="expiration" id="expiration" required>
             </div>
           </fieldset>    
-        </form>
+        
         <fieldset class="orderSummary">
           <legend class="legend">Order Summary</legend>
           <div class="orderLines">
@@ -68,10 +68,10 @@
         </fieldset>
         
         <div class="finalButtons">
-          <button><a href="#">Checkout</a></button>
+          <button  id="checkoutSubmit" type="submit"><a href="#">Checkout</a></button>
         </div>
       </section>
-      
+    </form>
     </main>
     <footer id="checkout-footer"></footer>
     <script src="../js/checkout.js" type="module"></script>
