@@ -1,4 +1,5 @@
 const baseURL = "http://157.201.228.93:2992/";
+const checkoutURL = 'http://157.201.228.93:2992/checkout'
 
 function convertToJson(res) {
   if (res.ok) {
@@ -8,7 +9,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   // constructor() {
 
   // }
@@ -38,5 +39,18 @@ export default class ProductData {
     return await fetch(baseURL + `product/${id}`)
       .then(convertToJson)
       .then((data) => data.Result);
+  }
+  checkout(object){
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(object)
+    }
+    fetch(checkoutURL,options)
+    // .then((response)=>{if (response.ok){console.log(response)} 
+    // throw Error(response.statusText)})
+
   }
 }
