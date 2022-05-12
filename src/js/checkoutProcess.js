@@ -1,6 +1,6 @@
 import { getLocalStorage } from "./utils.js";
 import ExternalServices from "./externalServices";
-
+import { removeAlerts } from "./utils.js";
 
 
 const services = new ExternalServices();
@@ -148,9 +148,11 @@ export default class CheckoutProcess {
         try {
           const res = await services.checkout(json);
           console.log(res);
+          location.assign('checkedout.html');
+          localStorage.clear();
         } catch (err) {
           console.log(err);
-          //console.log("TRY FAILED Line 153 Checkout process")
+          
         }
       }
 }

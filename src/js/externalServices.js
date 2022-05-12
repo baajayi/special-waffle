@@ -2,13 +2,12 @@ const baseURL = "http://157.201.228.93:2992/";
 const postURL = "http://157.201.228.93:2992/checkout/";
 
 async function convertToJson(res) {
+  let jsonResponse = await res.json()
+  console.log(jsonResponse)
   if (res.ok) {
-    return res.json();
+    return jsonResponse;
   } else {
-    console.log(res);
-  
-    console.log("Res.ok failed: line 5 externalServices")
-    throw new Error("Bad Response");
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 

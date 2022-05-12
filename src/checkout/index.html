@@ -38,13 +38,13 @@
             <legend class="legend">Payment</legend>
             <legend class="subLegend">Credit Card</legend>
             <label for="cardNumber"></label>
-              <input class="checkInputCC" type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" value="1234123412341234 ">
+              <input class="checkInputCC" type="number" id="cardNumber" name="cardNumber" placeholder="Card Number" maxlength="16" minlength="16" required>
             <label for="code"></label>
-              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" value="123">
+              <input class="checkInputCC" type="number" id="code" name="code" min="100" max="999" placeholder="CVC" value="123" required>
             <div class="formSub">
               <legend class="subLegend">Card Expiry</legend>
               <label for="expiration"></label>
-              <input class="checkInput" type="month" name="expiration" id="expiration" value="2028-06">
+              <input class="checkInput" type="text" name="expiration" id="expiration" value="02/23" required>
             </div>
           </fieldset>    
         
