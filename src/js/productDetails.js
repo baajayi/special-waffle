@@ -43,7 +43,7 @@ export default class ProductDetails {
           alt=${product.Name}
         />
 
-        <p class="product-card__price">${product.ListPrice}</p>
+        <p class="product-card__price">$${product.ListPrice.toFixed(2)}</p>
         <p class="product__color">${product.Colors[0].ColorName}</p>
         <p class="product__description">
         ${product.DescriptionHtmlSimple}
