@@ -2,12 +2,11 @@ const baseURL = "http://157.201.228.93:2992/";
 const postURL = "http://157.201.228.93:2992/checkout/";
 
 async function convertToJson(res) {
-  let jsonResponse = await res.json()
-  console.log(jsonResponse)
+  let jsonResponse = await res.json();
   if (res.ok) {
     return jsonResponse;
   } else {
-    throw { name: 'servicesError', message: jsonResponse };
+    throw { name: "servicesError", message: jsonResponse };
   }
 }
 
@@ -45,13 +44,12 @@ export default class ExternalServices {
 
   async checkout(payload) {
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
-
-    }
+    };
     return await fetch(postURL, options).then(convertToJson);
   }
 }

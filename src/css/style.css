@@ -231,7 +231,7 @@ button {
   flex-direction: column;
   border: 5px solid black;
   color: black;
-  padding: .5rem;
+  padding: 0.5rem;
   max-width: 550px;
   margin: 0 1rem 1rem 1rem;
   background-color: var(--secondary-color);
@@ -264,7 +264,8 @@ fieldset {
   align-items: center;
 }
 
-.finalButtons button a, .finalButtons button {
+.finalButtons button a,
+.finalButtons button {
   text-decoration: none;
   color: var(--secondary-color);
   background-color: white;
@@ -314,6 +315,18 @@ fieldset {
   color: white;
   font-family: var(--font-body);
 }
+.alert {
+  background-color: rgba(255, 6, 6, 0.295);
+  padding: 5px;
+  width: 250px;
+  margin: 2px;
+}
+button:hover {
+  transform: scale(1.05);
+}
+button:active {
+  background-color: black;
+}
 /*---------------------------------------- media queries*/
 
 @media screen and (min-width: 500px) {
@@ -336,10 +349,9 @@ fieldset {
     margin: 30px auto;
   }
   .paymentInfo {
-    
     border: 5px solid black;
     color: black;
-    padding: .5rem;
+    padding: 0.5rem;
     max-width: 95%;
     margin: 0 1rem 1rem 1rem;
     background-color: var(--secondary-color);
@@ -349,7 +361,7 @@ fieldset {
   }
   .checkoutForm {
     display: grid;
-    grid-template-columns: 1fr 1fr;      
+    grid-template-columns: 1fr 1fr;
   }
   .orderSummary {
     grid-column: span 2;
@@ -359,11 +371,11 @@ fieldset {
     margin-top: 1rem;
     grid-column: 1 / span2;
   }
-  .orderLines h2, .orderLines h3 {
+  .orderLines h2,
+  .orderLines h3 {
     margin: 0;
     padding: 0.5rem;
   }
-
 }
 
 footer {

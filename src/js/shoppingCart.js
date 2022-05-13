@@ -46,25 +46,22 @@ export default class ShoppingCart {
       document.getElementById("total").innerHTML = "$" + this.total.toFixed(2);
     }
   }
-    
+
   getCartQuantity(classToShow, classToInsertHTML) {
     let cartQuantity = localStorage.length;
     let toShow = document.querySelector(`.${classToShow}`);
     let toInsert = document.querySelector(`.${classToInsertHTML}`);
-    
+
     if (cartQuantity > 0) {
-      toShow.setAttribute('class', 'cartTotalShow');
+      toShow.setAttribute("class", "cartTotalShow");
       toInsert.innerHTML = `Total Items: ${cartQuantity}`;
     } else {
-      toShow.setAttribute('class', 'cartTotalShowEmpty');
-      toInsert.setAttribute('class', 'emptyCart');
-      toInsert.innerHTML = `Shopping Cart Empty`;
-
+      toShow.setAttribute("class", "cartTotalShowEmpty");
+      toInsert.setAttribute("class", "emptyCart");
+      toInsert.innerHTML = "Shopping Cart Empty";
     }
   }
 }
-
-
 
 let parent = document.querySelector(".product-list");
 let templateId = document.querySelector("#cart-template");
@@ -73,4 +70,3 @@ shoppingCart.init();
 loadHeaderFooter("#cart-header", "#cart-footer");
 shoppingCart.displayTotal();
 shoppingCart.getCartQuantity("cartTotalHide", "cartTotal");
-
