@@ -1,6 +1,5 @@
-import { getLocalStorage } from "./utils.js";
+import { getLocalStorage, alertMessage, removeAlerts } from "./utils.js";
 import ExternalServices from "./externalServices";
-import { removeAlerts } from "./utils.js";
 
 
 const services = new ExternalServices();
@@ -151,6 +150,11 @@ export default class CheckoutProcess {
           location.assign('checkedout.html');
           localStorage.clear();
         } catch (err) {
+          removeAlerts();
+          for (let message in err.message){
+            alertMessage(err.message[message]);
+          }
+          
           console.log(err);
           
         }

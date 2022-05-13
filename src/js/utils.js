@@ -119,7 +119,7 @@ export function alertMessage(message, scroll = true) {
 
   // if they did then remove the child
   alert.addEventListener('click', function(e) {
-      if( ) { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
+      if(e.target.tagName == 'SPAN') { // how can we tell if they clicked on our X or on something else?  hint: check out e.target.tagName or e.target.innerText
         main.removeChild(this);
       }
   })
@@ -135,5 +135,5 @@ export function alertMessage(message, scroll = true) {
 
 export function removeAlerts(){
   const alerts = document.querySelectorAll('.alert');
-  alerts.forEach(alert=>document.querySelector('main').removeChild(alert));
+  alerts.forEach(alert => document.querySelector('main').removeChild(alert));
 }
