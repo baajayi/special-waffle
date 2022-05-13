@@ -144,7 +144,7 @@ export default class CheckoutProcess {
         json.tax = this.taxTotal;
         json.shipping = this.shipping;
         json.items = packageItems(this.cart);
-        console.table(json);
+        //console.table(json);
         try {
           const res = await services.checkout(json);
           console.log(res);
