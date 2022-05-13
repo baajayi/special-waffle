@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.js";
+import { loadHeaderFooter, getLocalStorage } from "./utils.js";
 
 function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
@@ -7,8 +7,14 @@ function getLocalStorage(key) {
 function getCartContents() {
   //let markup = "";
 
-  for (let i = 0; i < localStorage.length; i++) {
-    let cartItem = getLocalStorage(i);
+  // let cart = getLocalStorage('cart');
+  // if(cart) {
+  // };
+
+  let key = localStorage.cart
+
+  for (let i = 0; i < key.length; i++) {
+    let cartItem = getLocalStorage('cart');
     //const htmlItems = cartItems.map((item) => renderCartItem(item));
     //document.querySelector(".product-list").innerHTML = htmlItems.join("");
     let ul = document.querySelector(".product-list");

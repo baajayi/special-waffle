@@ -1,4 +1,4 @@
-import { setLocalStorage } from "./utils.js";
+import { alertMessage, setLocalStorage, getLocalStorage } from "./utils.js";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -27,9 +27,17 @@ export default class ProductDetails {
   //  }
 
   addToCart() {
-    this.i += 1;
+    let cartList = getLocalStorage('cart');
+    if (!cartList) {
+      cartList = [];
+    }
+    cartList.push(this.products);
+    setLocalStorage('cart', cartList);
+    
+
+    //this.i += 1;
     //const product = this.dataSource.find((item) => item.Id === this.productId);
-    setLocalStorage(localStorage.length, this.products);
+    //setLocalStorage(localStorage.length, this.products);
   }
 
   renderProductDetails(product) {

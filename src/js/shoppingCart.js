@@ -8,6 +8,8 @@ export default class ShoppingCart {
     this.datasource = [];
     this.template = template;
     this.total = 0;
+    this.cart = localStorage.cart;
+    this.cartLength = this.cart.length;
   }
   init() {
     this.total = this.getLocalStorage();
@@ -22,8 +24,8 @@ export default class ShoppingCart {
     }
   }
   getLocalStorage() {
-    for (let i = 0; i < localStorage.length; i++) {
-      let localStorageItem = JSON.parse(localStorage.getItem(i));
+    for (let i = 0; i < this.cart.length; i++) {
+      let localStorageItem = JSON.parse(localStorage.getItem('cart'));
       this.datasource.push(localStorageItem);
       this.total += localStorageItem.FinalPrice;
     }
