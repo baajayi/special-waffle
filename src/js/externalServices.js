@@ -1,7 +1,5 @@
 const baseURL = "http://157.201.228.93:2992/";
 const postURL = "http://157.201.228.93:2992/checkout/";
-const loginURL = "http://157.201.228.93:2992/login";
-const orderURL = "http://157.201.228.93:2992/orders";
 
 async function convertToJson(res) {
   let jsonResponse = await res.json();
@@ -53,29 +51,5 @@ export default class ExternalServices {
       body: JSON.stringify(payload),
     };
     return await fetch(postURL, options).then(convertToJson);
-  }
-
-  async loginRequest(creds) {
-    const options = {
-      method: 'POST',
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(creds),
-    }
-    console.log("tried it");
-    const res = await fetch(loginURL, options).then(convertToJson);
-    console.log("tried it");
-    return res.accessToken;
-  }
-  async getOrders(token) {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }
-    const res = await fetch(orderURL, options).then(convertToJson);
-    return res;
   }
 }
