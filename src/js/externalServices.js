@@ -64,7 +64,6 @@ export default class ExternalServices {
       body: JSON.stringify(creds),
     }
     console.log("tried it");
-    console.log(creds);
     const res = await fetch(loginURL, options).then(convertToJson);
     console.log("tried it");
     return res.accessToken;
