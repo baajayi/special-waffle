@@ -392,6 +392,35 @@ button:active {
   background-color: black;
 }
 
+#login {
+  border: solid black 2px;
+  padding: 20px;
+}
+
+#login label {
+  display: block;
+  padding-top: 10px;
+}
+
+#login button {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.log a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+.log:hover {
+  transform: scale(1.1);
+}
+
+.log {
+  margin: auto;
+}
+
 /*---------------------------------------- media queries*/
 
 @media screen and (min-width: 500px) {
