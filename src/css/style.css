@@ -465,3 +465,15 @@ button:active {
   display: flex;
   flex-wrap: flex;
 }
+
+#admin-main fieldset {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+
+#admin-main label {
+  padding: 10px;
+}
