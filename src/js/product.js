@@ -1,13 +1,13 @@
-import ExternalServices from "./externalServices";
-import ProductDetails from "./productDetails";
-import { getParams } from "./utils.js";
+import ExternalServices from './externalServices';
+import ProductDetails from './productDetails';
+import { getParams } from './utils.js';
 
-const dataSource = new ExternalServices("tents");
+const dataSource = new ExternalServices('tents');
 
 //console.log(dataSource);
 //console.log(dataSource.getData());
 
-const productId = getParams("product");
+const productId = getParams('product');
 //const prodTable = dataSource.findProductById(productId);
 
 const product = new ProductDetails(productId, dataSource);

@@ -1,5 +1,5 @@
-import { getLocalStorage, alertMessage, removeAlerts } from "./utils.js";
-import ExternalServices from "./externalServices";
+import { getLocalStorage, alertMessage, removeAlerts } from './utils.js';
+import ExternalServices from './externalServices';
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
@@ -38,10 +38,10 @@ export default class CheckoutProcess {
     this.taxTotal = 0.0;
     this.total = 0.0;
 
-    this.subtotalContent = "";
-    this.shippingContent = "Shipping:";
-    this.taxContent = "Tax:";
-    this.orderContent = "Order Total:";
+    this.subtotalContent = '';
+    this.shippingContent = 'Shipping:';
+    this.taxContent = 'Tax:';
+    this.orderContent = 'Order Total:';
 
     for (let i = 0; i < localStorage.length; i++) {
       let cartItem = getLocalStorage(i);
@@ -65,7 +65,7 @@ export default class CheckoutProcess {
       this.subtotalContent = `${this.itemQuantity} Item Subtotal:`;
       //subtotalLabel.innerHTML = `${itemQuantity} Item Subtotal`;
     } else {
-      this.subtotalContent = "No Items in Cart";
+      this.subtotalContent = 'No Items in Cart';
       //subtotalLabel.innerHTML = "No Items in Cart";
     }
   }
@@ -78,11 +78,11 @@ export default class CheckoutProcess {
       this.subtotal = this.subtotal + itemPrice;
     }
 
-    let subtotalLabel = document.getElementById("subtotalLabel");
-    let subtotalCost = document.getElementById("subtotalAmount");
-    let shippingLabel = document.getElementById("shippingLabel");
-    let taxLabel = document.getElementById("taxLabel");
-    let orderLabel = document.getElementById("orderLabel");
+    let subtotalLabel = document.getElementById('subtotalLabel');
+    let subtotalCost = document.getElementById('subtotalAmount');
+    let shippingLabel = document.getElementById('shippingLabel');
+    let taxLabel = document.getElementById('taxLabel');
+    let orderLabel = document.getElementById('orderLabel');
 
     subtotalLabel.innerHTML = this.subtotalContent;
     subtotalCost.innerHTML = `$${this.subtotal.toFixed(2)}`;
@@ -94,9 +94,9 @@ export default class CheckoutProcess {
 
   getShipping() {
     if (this.itemQuantity === 0) {
-      this.shippingContent = "N/A";
+      this.shippingContent = 'N/A';
     } else if (this.itemQuantity >= 1) {
-      this.shippingContent = "Shipping Estimate:";
+      this.shippingContent = 'Shipping Estimate:';
     }
 
     // if (this.itemQuantity > 0) {
@@ -119,9 +119,9 @@ export default class CheckoutProcess {
     this.getShipping();
     this.getTax();
 
-    let shippingAmount = document.getElementById("shippingAmount");
-    let taxAmount = document.getElementById("taxAmount");
-    let orderAmount = document.getElementById("orderAmount");
+    let shippingAmount = document.getElementById('shippingAmount');
+    let taxAmount = document.getElementById('taxAmount');
+    let orderAmount = document.getElementById('orderAmount');
     shippingAmount.innerHTML = `$${this.shipping.toFixed(2)}`;
     taxAmount.innerHTML = `$${this.taxTotal.toFixed(2)}`;
     this.total = this.subtotal + this.shipping + this.taxTotal;
@@ -129,7 +129,7 @@ export default class CheckoutProcess {
   }
 
   async checkout() {
-    const formElement = document.forms["checkoutForm"];
+    const formElement = document.forms['checkoutForm'];
 
     const json = formDataToJSON(formElement);
     // add totals, and item details
@@ -141,7 +141,7 @@ export default class CheckoutProcess {
     try {
       const res = await services.checkout(json);
       console.log(res);
-      location.assign("checkedout.html");
+      location.assign('checkedout.html');
       localStorage.clear();
     } catch (err) {
       removeAlerts();

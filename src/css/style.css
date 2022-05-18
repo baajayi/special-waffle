@@ -87,7 +87,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -127,12 +127,12 @@ button {
   font-size: 0.75rem;
   letter-spacing: 2px;
   text-decoration: none;
-  padding: .45rem;
+  padding: 0.45rem;
 }
 
 /* Cart icon styles */
 .cart {
-  padding-top: .5em;
+  padding-top: 0.5em;
   position: relative;
   text-align: center;
 }
@@ -162,6 +162,13 @@ button {
 
 .products h2:nth-child(1) {
   text-align: center;
+}
+
+#product-types {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
 }
 
 #product-types div {
@@ -283,8 +290,6 @@ button {
   text-align: right;
 }
 
-
-
 footer {
   font-size: var(--small-font);
   padding: 1em;
@@ -316,6 +321,7 @@ footer {
   max-width: 550px;
   margin: 0 1rem 1rem 1rem;
   background-color: var(--secondary-color);
+  justify-content: center;
 }
 
 fieldset {
@@ -419,10 +425,10 @@ button:active {
   align-items: center;
 }
 form {
-  width: 550px;
+  min-width: 200px;
   max-width: 550px;
   margin: 1rem;
-  padding: 2rem;
+  padding: 1rem;
 }
 form fieldset {
   width: 100%;
@@ -443,7 +449,8 @@ form input {
   font-size: 18px;
 }
 
-#login { /* Admin Form Button */
+#login {
+  /* Admin Form Button */
   background-color: #525b0f;
   color: white;
   text-decoration: none;
@@ -472,7 +479,6 @@ form input {
 #orderTable thead {
   background-color: #616b13;
   color: white;
-
 }
 
 #orderTable td {
@@ -480,12 +486,9 @@ form input {
   padding: 0.85rem;
 }
 
-
-
-
 /*---------------------------------------- media queries*/
 
-@media screen and (min-width: 500px) {
+@media only screen and (min-width: 39.125rem) {
   body {
     max-width: 1080px;
     margin: auto;
@@ -501,6 +504,10 @@ form input {
   }
 
   .paymentInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     border: 5px solid black;
     color: black;
     padding: 0.5rem;
@@ -514,6 +521,7 @@ form input {
   }
 
   .checkoutForm {
+    max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -533,26 +541,30 @@ form input {
     margin: 0;
     padding: 0.5rem;
   }
+
+  .product-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  #product-types {
+    flex-wrap: wrap;
+  }
+
+  #product-types div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #product-type div img {
+    display: flex;
+    flex-wrap: flex;
+  }
 }
 
-.product-list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
-
-#product-types {
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-}
-
-#product-types div {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#product-type div img {
-  display: flex;
-  flex-wrap: flex;
+@media only screen and (min-width: 51.9375rem) {
+  #product-types {
+    flex-wrap: nowrap;
+  }
 }

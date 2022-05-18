@@ -1,32 +1,28 @@
-import ExternalServices from "./externalServices.js";
+import ExternalServices from './externalServices.js';
 import { alertMessage } from './utils.js';
 
-
-
 export default class Admin {
+  constructor() {
+    this.token = null;
+    this.services = new ExternalServices();
+    this.mainElement = document.getElementById('adminMain');
+    //console.log('Hello!');
+  }
 
-    constructor() {
-        this.token = null;
-        this.services = new ExternalServices();
-        this.mainElement = document.getElementById("adminMain");
-        console.log('Hello!');
+  async login(creds, next) {
+    try {
+      this.token = await this.services.loginRequest(creds);
+      next();
+      //console.log(creds);
+      //console.table(token);
+    } catch (err) {
+      alertMessage(err.message.message);
+      //console.log(err.message.message);
     }
+  }
 
-    async login(creds, next) {
-        try {
-            this.token = await this.services.loginRequest(creds);
-            next();
-            //console.log(creds);
-            //console.table(token);
-        }
-        catch(err) {
-            //alertMessage(err.message.message);
-            console.log(err.message.message);
-        }
-    };
-
-    showLogin() {
-        const form = `
+  showLogin() {
+    const form = `
             <form class="soForm" id="adminForm"">
                 <fieldset>
                     <legend>Login</legend>
@@ -41,41 +37,39 @@ export default class Admin {
             </form>
         `;
 
-        document.getElementById('adminMain').innerHTML = form;
+    document.getElementById('adminMain').innerHTML = form;
 
-        document.getElementById('login').addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            //console.log(`${email}, ${password}`);
-            this.login({email, password}, this.getOrders.bind(this))
-        });
+    document.getElementById('login').addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      //console.log(`${email}, ${password}`);
+      this.login({ email, password }, this.getOrders.bind(this));
+    });
 
-        // document.getElementById('orderButton').addEventListener('click', (e) => {
-        //     console.table(this.token);
-        //     this.getOrders();
-            
-        // });
-        
-    };
+    // document.getElementById('orderButton').addEventListener('click', (e) => {
+    //     console.table(this.token);
+    //     this.getOrders();
 
-    async getOrders() {
-        try {
-            
-            const orderTable = await this.services.orderRequest(this.token);
-            console.log(this.token);//console.log(orderTable);
-            this.mainElement.innerHTML = this.orderHtml();
-            const parent = document.getElementById('tableBody');
-            // why not a template like we have done before?  The markup here was simple enough that I didn't think it worth the overhead...but a template would certainly work!
-            parent.innerHTML = this.orderTableMaker(orderTable)
-          } catch(err) {
-            console.log(err);
-          }
-        }
-        // document.getElementById('adminMain').innerHTML = form;
+    // });
+  }
 
-    orderHtml() {
-        return `
+  async getOrders() {
+    try {
+      const orderTable = await this.services.orderRequest(this.token);
+      //console.log(this.token);//console.log(orderTable);
+      this.mainElement.innerHTML = this.orderHtml();
+      const parent = document.getElementById('tableBody');
+      // why not a template like we have done before?  The markup here was simple enough that I didn't think it worth the overhead...but a template would certainly work!
+      parent.innerHTML = this.orderTableMaker(orderTable);
+    } catch (err) {
+      //console.log(err);
+    }
+  }
+  // document.getElementById('adminMain').innerHTML = form;
+
+  orderHtml() {
+    return `
         <table id="orderTable">
             <thead>
                 <tr>
@@ -85,50 +79,47 @@ export default class Admin {
                     <th>Total</th>
                 </tr>
             </thead>
-        </table> `
-    };
+        </table> `;
+  }
 
-    orderTableMaker(orders) {
-        const orderData = orders;
-        console.table(orderData);
-        const table = document.getElementById('orderTable');
+  orderTableMaker(orders) {
+    const orderData = orders;
+    //console.table(orderData);
+    const table = document.getElementById('orderTable');
 
-        for (let i = 0; i < orderData.length; i++) {      
-             
-            let container = document.createElement('tr');
-            let id = document.createElement('td');
-            let date = document.createElement('td');
-            let items = document.createElement('td');
-            let total = document.createElement('td');
+    for (let i = 0; i < orderData.length; i++) {
+      let container = document.createElement('tr');
+      let id = document.createElement('td');
+      let date = document.createElement('td');
+      let items = document.createElement('td');
+      let total = document.createElement('td');
 
-            let orderDate = new Date(orderData[i].orderDate).toLocaleDateString('en-US');
-            
-            if (orderData[i].items === undefined) {
-                this.length = 0;
-            } else {
-                this.length = orderData[i].items.length;
-            };
+      let orderDate = new Date(orderData[i].orderDate).toLocaleDateString(
+        'en-US'
+      );
 
-            let orderTotal = orderData[i].orderTotal;
+      if (orderData[i].items === undefined) {
+        this.length = 0;
+      } else {
+        this.length = orderData[i].items.length;
+      }
 
-            id.innerHTML = orderData[i].id;
-            date.innerHTML = orderDate;
-            items.innerHTML = this.length;
-            total.innerHTML = `$${Number(orderTotal).toFixed(2)}`;  
-            
-            container.appendChild(id);
-            container.appendChild(date);
-            container.appendChild(items);
-            container.appendChild(total);
+      let orderTotal = orderData[i].orderTotal;
 
-            table.appendChild(container);
-        }; 
-        
+      id.innerHTML = orderData[i].id;
+      date.innerHTML = orderDate;
+      items.innerHTML = this.length;
+      total.innerHTML = `$${Number(orderTotal).toFixed(2)}`;
+
+      container.appendChild(id);
+      container.appendChild(date);
+      container.appendChild(items);
+      container.appendChild(total);
+
+      table.appendChild(container);
     }
+  }
+}
 
-    
-
-};
-
-let admin = new Admin;
+let admin = new Admin();
 admin.showLogin();

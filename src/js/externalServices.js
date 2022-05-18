@@ -1,6 +1,6 @@
-const baseURL = "http://157.201.228.93:2992/";
-const postURL = "http://157.201.228.93:2992/checkout/";
-const loginURL = "http://157.201.228.93:2992/login";
+const baseURL = 'http://157.201.228.93:2992/';
+const postURL = 'http://157.201.228.93:2992/checkout/';
+const loginURL = 'http://157.201.228.93:2992/login';
 const orderURL = 'http://157.201.228.93:2992/orders';
 
 async function convertToJson(res) {
@@ -8,7 +8,7 @@ async function convertToJson(res) {
   if (res.ok) {
     return jsonResponse;
   } else {
-    throw { name: "servicesError", message: jsonResponse };
+    throw { name: 'servicesError', message: jsonResponse };
   }
 }
 
@@ -46,9 +46,9 @@ export default class ExternalServices {
 
   async checkout(payload) {
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     };
@@ -56,20 +56,20 @@ export default class ExternalServices {
   }
 
   async loginRequest(creds) {
-    console.log(creds);
+    //console.log(creds);
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(creds)
-    }
-    console.log("Options"); // Troubleshooting
-    console.log(options);
-    const response = await fetch(baseURL + 'login', options).then(convertToJson);
-    
-    console.table(response.accessToken);
-    
+      body: JSON.stringify(creds),
+    };
+    //console.log("Options"); // Troubleshooting
+    //console.log(options);
+    const response = await fetch(loginURL, options).then(convertToJson);
+
+    //console.table(response.accessToken);
+
     return response.accessToken;
   }
 
@@ -78,14 +78,11 @@ export default class ExternalServices {
     const options = {
       method: 'GET',
       headers: {
-          'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-
-
-    }
+    };
     const orderGet = await fetch(orderURL, options).then(convertToJson);
     //console.table(orderGet);
     return orderGet;
-  };
-
-};
+  }
+}
