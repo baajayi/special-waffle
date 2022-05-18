@@ -66,20 +66,20 @@ export default class ExternalServices {
     //console.log("Options"); // Troubleshooting
     //console.log(options);
     return await fetch(loginURL, options).then(convertToJson);
-    //console.table(response);
 
   }
 
-  async orderRequest(token) {
+  async getOrders(token) {
+    console.log(token)
     const options = {
       method: 'GET',
       headers: {
           'Authorization': `Bearer ${token}`
       }
     }
-    const orderGet = await fetch(orderURL, options).then((res)=>convertToJson(res));
-    console.table(orderGet);
-    return orderGet;
+    const orders = fetch(baseURL + "orders", options).then(convertToJson);
+    console.log(options);
+    return orders;
   };
 
 };

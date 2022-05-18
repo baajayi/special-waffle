@@ -429,6 +429,7 @@ form input {
   margin: 0;
   padding: 1rem;
   width: 100px;
+  align-self: center;
   border: none;
 }
 
