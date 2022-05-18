@@ -1,9 +1,23 @@
-
-
+import ExternalServices from "./externalServices";
+import { alertMessage } from "./utils";
 
 export default class Admin{
-    login(){
-
+    constructor(outputSelector) {
+        this.mainElement = document.querySelector(outputSelector);
+        this.token = null;
+        this.externalServices = new ExternalServices();
+      }
+    async login(creds){
+        console.log('success')
+        try{
+            this.token = await this.externalServices.loginRequest(creds);
+            this.getOrders(this.token)
+            // let answer = this.externalServices.getOrders(this.token);
+            // console.log(answer);
+        }
+        catch(err){
+            alertMessage(err.message.message);
+        }
     }
     showLogin(){
         let adminMain =document.querySelector('#admin-main');
@@ -16,14 +30,15 @@ export default class Admin{
         let emailLabel = document.createElement('label');
         let emailInput = document.createElement('input');
         let submitBtn = document.createElement('button');
+        // let getOrder = document.createElement('button');
         submitBtn.setAttribute('type', 'submit');
         submitBtn.textContent = 'Login';
-        emailLabel.setAttribute('for', 'email');
-        emailInput.setAttribute('id','email');
-        emailInput.setAttribute('name', 'email');
-        emailInput.setAttribute('type', 'email');
-        emailInput.setAttribute('autocomplete','email-adress')
-        // emailInput.setAttribute('required');
+        emailLabel.for = 'email';
+        emailInput.id = 'email';
+        emailInput.name = 'email';
+        emailInput.type = 'email';
+        emailInput.autocomplete = 'email-adress';
+        emailInput.required = true;
         let passwordLabel = document.createElement('label');
         let passwordInput = document.createElement('input');
         passwordLabel.for = 'password';
@@ -41,7 +56,16 @@ export default class Admin{
         loginFieldset.appendChild(submitBtn);
         loginForm.appendChild(loginFieldset);
         divElement.appendChild(loginForm);
+        // divElement.appendChild(getOrder);
         adminMain.appendChild(divElement);
+        emailInput.value="user1@email.com";
+        passwordInput.value="user1";
+        let creds = { email: emailInput.value , password: passwordInput.value }
+        submitBtn.addEventListener('click',(ev)=>{ev.preventDefault();this.login(creds)})
+    }
+    getOrders(token){
+        let order = this.externalServices.getOrders(token.accessToken)
+        return order;
     }
 }
 

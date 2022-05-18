@@ -1,5 +1,7 @@
 const baseURL = "http://157.201.228.93:2992/";
 const postURL = "http://157.201.228.93:2992/checkout/";
+const loginURL = 'http://157.201.228.93:2992/login';
+const ordersURL = 'http://157.201.228.93:2992/orders';
 
 async function convertToJson(res) {
   let jsonResponse = await res.json();
@@ -52,4 +54,27 @@ export default class ExternalServices {
     };
     return await fetch(postURL, options).then(convertToJson);
   }
+async loginRequest(creds){
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  };
+  return await fetch(loginURL, options).then(convertToJson);
+}
+async getOrders(token){
+  console.log(token)
+  const options = {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    }
+  };
+  let order = await fetch(ordersURL, options).then((res)=>convertToJson(res));
+  console.table(order);
+  return order;
+}
+
 }
