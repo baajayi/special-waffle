@@ -112,9 +112,27 @@ button {
 
 /* End utility classes */
 
+/*-----------cart & login ----*/
+.cart_Login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95px;
+}
+
+.toLogin {
+  background-color: #616b13;
+  color: white;
+  font-family: var(--font-base);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  padding: .45rem;
+}
+
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
+  padding-top: .5em;
   position: relative;
   text-align: center;
 }
@@ -264,6 +282,8 @@ button {
   grid-column: 3;
   text-align: right;
 }
+
+
 
 footer {
   font-size: var(--small-font);
