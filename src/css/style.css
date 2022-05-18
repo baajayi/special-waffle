@@ -392,6 +392,77 @@ button:active {
   background-color: black;
 }
 
+/*----------------Admin.html------------------------*/
+#adminMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  width: 550px;
+  max-width: 550px;
+  margin: 1rem;
+  padding: 2rem;
+}
+form fieldset {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
+form legend {
+  font-size: 24px;
+  padding: 1rem;
+}
+
+form input {
+  margin: 0 0 0.5rem 0;
+  padding: 0.5rem;
+  font-size: 18px;
+}
+
+#login { /* Admin Form Button */
+  background-color: #525b0f;
+  color: white;
+  text-decoration: none;
+  margin: 0;
+  padding: 1rem;
+  width: 100px;
+  border: none;
+}
+
+#login:hover {
+  transform: scale(1.05);
+}
+
+#login:active {
+  background-color: #616b13;
+  transform: scale(0.95);
+}
+/*------Admin order table------*/
+#orderTable {
+  margin: 1rem;
+  border: 5px solid #303030;
+  text-align: center;
+  width: 90%;
+}
+
+#orderTable thead {
+  background-color: #616b13;
+  color: white;
+
+}
+
+#orderTable td {
+  border-bottom: 1px solid #303030;
+  padding: 0.85rem;
+}
+
+
+
+
 /*---------------------------------------- media queries*/
 
 @media screen and (min-width: 500px) {
