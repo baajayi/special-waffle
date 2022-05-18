@@ -89,8 +89,8 @@ export async function renderWithTemplate(
   let clone = template.content.cloneNode(true);
   if (callback) {
     clone = callback(clone, data);
-  }
-  parentElement.appendChild(clone);
+    parentElement.appendChild(clone);
+}
 }
 
 export async function loadTemplate(path) {

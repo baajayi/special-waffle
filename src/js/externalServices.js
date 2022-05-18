@@ -61,14 +61,13 @@ export default class ExternalServices {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(creds)
-    }
+      body: JSON.stringify(creds),
+    };
     //console.log("Options"); // Troubleshooting
     //console.log(options);
-    const response = await fetch(loginURL, options).then(convertToJson);
+    return await fetch(loginURL, options).then(convertToJson);
     //console.table(response);
 
-    return response.accessToken;
   }
 
   async orderRequest(token) {
@@ -76,12 +75,10 @@ export default class ExternalServices {
       method: 'GET',
       headers: {
           'Authorization': `Bearer ${token}`
-      },
-
-
+      }
     }
-    const orderGet = await fetch(orderURL, options).then(convertToJson);
-    //console.table(orderGet);
+    const orderGet = await fetch(orderURL, options).then((res)=>convertToJson(res));
+    console.table(orderGet);
     return orderGet;
   };
 
