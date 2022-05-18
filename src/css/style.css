@@ -87,7 +87,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -422,7 +422,8 @@ form input {
   font-size: 18px;
 }
 
-#login { /* Admin Form Button */
+#login {
+  /* Admin Form Button */
   background-color: #525b0f;
   color: white;
   text-decoration: none;
@@ -452,14 +453,12 @@ form input {
 #orderTable thead {
   background-color: #616b13;
   color: white;
-
 }
 
 #orderTable td {
   border-bottom: 1px solid #303030;
   padding: 0.85rem;
 }
-
 
 /*---------------------------------------- media queries*/
 

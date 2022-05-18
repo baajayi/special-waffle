@@ -37,7 +37,8 @@ export default class ShoppingCart {
     clone.querySelector(".cart-card__color").textContent =
       product.Colors[0].ColorName;
     clone.querySelector(".cart-card__quantity").textContent = "qty: 1";
-    clone.querySelector(".cart-card__price").textContent = "$" + product.ListPrice.toFixed(2);
+    clone.querySelector(".cart-card__price").textContent =
+      "$" + product.ListPrice.toFixed(2);
     return clone;
   }
   displayTotal() {

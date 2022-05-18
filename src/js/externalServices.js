@@ -1,7 +1,6 @@
 const baseURL = "http://157.201.228.93:2992/";
 const postURL = "http://157.201.228.93:2992/checkout/";
 const loginURL = "http://157.201.228.93:2992/login";
-const orderURL = 'http://157.201.228.93:2992/orders';
 
 async function convertToJson(res) {
   let jsonResponse = await res.json();
@@ -66,20 +65,18 @@ export default class ExternalServices {
     //console.log("Options"); // Troubleshooting
     //console.log(options);
     return await fetch(loginURL, options).then(convertToJson);
-
   }
 
   async getOrders(token) {
-    console.log(token)
+    console.log(token);
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
-          'Authorization': `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    };
     const orders = fetch(baseURL + "orders", options).then(convertToJson);
     console.log(options);
     return orders;
-  };
-
-};
+  }
+}

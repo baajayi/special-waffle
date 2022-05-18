@@ -42,8 +42,9 @@ export default class ProductList {
     clone.querySelector("img").src = product.Images.PrimaryMedium;
     clone.querySelector(".card__brand").textContent = product.Brand.Name;
     clone.querySelector(".card__name").textContent = product.NameWithoutBrand;
-    clone.querySelector(".product-card__price").textContent +=
-      product.ListPrice.toFixed(2);
+    clone.querySelector(
+      ".product-card__price"
+    ).textContent += product.ListPrice.toFixed(2);
     return clone;
     // clone[img].setAttribute('src',product.Image)
   }

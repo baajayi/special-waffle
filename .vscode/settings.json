@@ -1,6 +1,6 @@
 {
-    "debug.javascript.defaultRuntimeExecutable": {
+  "debug.javascript.defaultRuntimeExecutable": {
     "pwa-chrome": "",
-        "pwa-node": "node"
-    }
+    "pwa-node": "node"
+  }
 }
