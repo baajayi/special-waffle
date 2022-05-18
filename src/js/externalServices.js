@@ -56,6 +56,7 @@ export default class ExternalServices {
   }
 
   async loginRequest(creds) {
+    console.log(creds);
     const options = {
       method: "POST",
       headers: {
@@ -63,15 +64,17 @@ export default class ExternalServices {
       },
       body: JSON.stringify(creds)
     }
-    //console.log("Options"); // Troubleshooting
-    //console.log(options);
-    const response = await fetch(loginURL, options).then(convertToJson);
-    //console.table(response);
-
+    console.log("Options"); // Troubleshooting
+    console.log(options);
+    const response = await fetch(baseURL + 'login', options).then(convertToJson);
+    
+    console.table(response.accessToken);
+    
     return response.accessToken;
   }
 
   async orderRequest(token) {
+    //console.log(token);
     const options = {
       method: 'GET',
       headers: {

@@ -9,13 +9,14 @@ export default class Admin {
         this.token = null;
         this.services = new ExternalServices();
         this.mainElement = document.getElementById("adminMain");
+        console.log('Hello!');
     }
 
     async login(creds, next) {
         try {
             this.token = await this.services.loginRequest(creds);
             next();
-            
+            //console.log(creds);
             //console.table(token);
         }
         catch(err) {
@@ -43,24 +44,26 @@ export default class Admin {
         document.getElementById('adminMain').innerHTML = form;
 
         document.getElementById('login').addEventListener('click', (e) => {
+            e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             //console.log(`${email}, ${password}`);
-            this.login({email, password}, this.getOrders.bind(this));
-            
+            this.login({email, password}, this.getOrders.bind(this))
         });
 
-        document.getElementById('orderButton').addEventListener('click', (e) => {
-            this.getOrders();
+        // document.getElementById('orderButton').addEventListener('click', (e) => {
+        //     console.table(this.token);
+        //     this.getOrders();
             
-        });
+        // });
         
     };
 
     async getOrders() {
         try {
+            
             const orderTable = await this.services.orderRequest(this.token);
-            //console.log(orderTable);
+            console.log(this.token);//console.log(orderTable);
             this.mainElement.innerHTML = this.orderHtml();
             const parent = document.getElementById('tableBody');
             // why not a template like we have done before?  The markup here was simple enough that I didn't think it worth the overhead...but a template would certainly work!
@@ -87,9 +90,9 @@ export default class Admin {
 
     orderTableMaker(orders) {
         const orderData = orders;
-        //console.table(orderData);
+        console.table(orderData);
         const table = document.getElementById('orderTable');
-//        const tableBuilt = orders.forEach(order => (e) {
+
         for (let i = 0; i < orderData.length; i++) {      
              
             let container = document.createElement('tr');
@@ -123,9 +126,7 @@ export default class Admin {
         
     }
 
-    //<td>${new Date(order.orderDate).toLocaleDateString('en-US')}</td>
-    //
-
+    
 
 };
 
