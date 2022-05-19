@@ -61,7 +61,7 @@ export default class Admin{
         emailInput.value="user1@email.com";
         passwordInput.value="user1";
         let creds = { email: emailInput.value , password: passwordInput.value }
-        submitBtn.addEventListener('click',(ev)=>{ev.preventDefault();this.login(creds)})
+        submitBtn.addEventListener('click',(ev)=>{ev.preventDefault();this.login(creds);adminMain.innerHTML=''})
     }
     getOrders(token){
         let order = this.externalServices.getOrders(token.accessToken)
