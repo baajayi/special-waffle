@@ -74,6 +74,7 @@ export default class Admin {
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Name</th>
                     <th>Date</th>
                     <th>#Items</th>
                     <th>Total</th>
@@ -90,6 +91,7 @@ export default class Admin {
     for (let i = 0; i < orderData.length; i++) {
       let container = document.createElement('tr');
       let id = document.createElement('td');
+      let name = document.createElement('td');
       let date = document.createElement('td');
       let items = document.createElement('td');
       let total = document.createElement('td');
@@ -107,11 +109,13 @@ export default class Admin {
       let orderTotal = orderData[i].orderTotal;
 
       id.innerHTML = orderData[i].id;
+      name.innerHTML = orderData[i].fname;
       date.innerHTML = orderDate;
       items.innerHTML = this.length;
       total.innerHTML = `$${Number(orderTotal).toFixed(2)}`;
 
       container.appendChild(id);
+      container.appendChild(name);
       container.appendChild(date);
       container.appendChild(items);
       container.appendChild(total);
