@@ -65,7 +65,6 @@ async loginRequest(creds){
   return await fetch(loginURL, options).then(convertToJson);
 }
 async getOrders(token){
-  console.log(token)
   const options = {
     method: "GET",
     headers: {
@@ -73,7 +72,8 @@ async getOrders(token){
     }
   };
   let order = await fetch(ordersURL, options).then((res)=>convertToJson(res));
-  console.table(order);
+  console.log(order[0])
+  console.log(order)
   return order;
 }
 
