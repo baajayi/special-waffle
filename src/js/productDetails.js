@@ -1,7 +1,8 @@
 import { setLocalStorage } from './utils.js';
 
 export default class ProductDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, dataSource, category) {
+    this.category = category;
     this.productId = productId;
     this.products = {};
     this.dataSource = dataSource;
@@ -13,7 +14,8 @@ export default class ProductDetails {
     // once we have the product details we can render out the HTML
     // once the HTML is rendered we can add a listener to Add to Cart button
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
-    this.products = await this.dataSource.findProductById(this.productId);
+    this.products = await this.dataSource.findProductById(this.productId,this.category);
+    console.log(this.products)
     document.querySelector('main').innerHTML = this.renderProductDetails(
       this.products
     );

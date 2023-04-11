@@ -9,9 +9,13 @@ export default class ProductList {
     this.filterArray = [];
   }
   async init() {
+    console.log('starting')
+    console.log(this.category)
     const list = await this.datasource.getData(this.category);
+    console.log(list)
     // this.renderList(list)
     renderListWithTemplate(
+      this.category,
       this.template,
       this.listElement,
       list,
@@ -28,23 +32,26 @@ export default class ProductList {
   //     });
   // }
   prepareTemplateOld(clone, product) {
-    clone.querySelector('a').href += product.Id;
+    let params = this.category + '?id=' + product._id;
+    clone.querySelector('a').href += params;
     clone.querySelector('img').src = product.Image;
     clone.querySelector('.card__brand').textContent = product.Brand.Name;
     clone.querySelector('.card__name').textContent = product.NameWithoutBrand;
     clone.querySelector('.product-card__price').textContent +=
-      product.ListPrice;
+      product.ListPrice.toFixed(2);
     return clone;
     // clone[img].setAttribute('src',product.Image)
   }
-  prepareTemplate(clone, product) {
-    clone.querySelector('a').href += product.Id;
+  prepareTemplate(clone, product, category) {
+    let params = category + '&id=' + product._id;
+    clone.querySelector('a').href += params;
     clone.querySelector('img').src = product.Images.PrimaryMedium;
     clone.querySelector('.card__brand').textContent = product.Brand.Name;
     clone.querySelector('.card__name').textContent = product.NameWithoutBrand;
     clone.querySelector(
       '.product-card__price'
-    ).textContent += product.ListPrice.toFixed(2);
+    ).textContent += product.ListPrice.toFixed(2)
+    // .toFixed(2);
     return clone;
     // clone[img].setAttribute('src',product.Image)
   }

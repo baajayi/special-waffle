@@ -2,15 +2,16 @@ import ExternalServices from './externalServices';
 import ProductDetails from './productDetails';
 import { getParams } from './utils.js';
 
-const dataSource = new ExternalServices('tents');
+const dataSource = new ExternalServices();
 
 //console.log(dataSource);
 //console.log(dataSource.getData());
 
-const productId = getParams('product');
+const productId = getParams('id');
+const category = getParams('product');
 //const prodTable = dataSource.findProductById(productId);
-
-const product = new ProductDetails(productId, dataSource);
+console.log(productId)
+const product = new ProductDetails(productId, dataSource, category);
 product.init();
 //console.log(product);
 

@@ -29,6 +29,7 @@ export function getParams(param) {
   return urlParams.get(param);
 }
 export function renderListWithTemplate(
+  category,
   template,
   parentElement,
   list,
@@ -45,7 +46,7 @@ export function renderListWithTemplate(
       exists = false;
     } else {
       const clone = template.content.cloneNode(true);
-      const preparedClone = callback(clone, element);
+      const preparedClone = callback(clone, element, category);
       parentElement.appendChild(preparedClone);
     }
   });

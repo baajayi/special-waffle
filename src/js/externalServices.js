@@ -1,4 +1,4 @@
-const baseURL = 'http://157.201.228.93:2992/';
+const baseURL = 'http://localhost:3000/';
 const postURL = 'http://157.201.228.93:2992/checkout/';
 const loginURL = 'http://157.201.228.93:2992/login';
 const orderURL = 'http://157.201.228.93:2992/orders';
@@ -21,9 +21,10 @@ export default class ExternalServices {
     //fetch(baseURL + `products/search/${category}`)
     //            .then(convertToJson).then((data) => data.Result);
     //console.log(data.Result);
+    console.log('y???')
     return fetch(baseURL + `products/search/${category}`)
-      .then(convertToJson)
-      .then((info) => info.Result);
+      .then((res)=>convertToJson(res))
+      .then((info) => info);
 
     //fetch(this.path)
     //     .then(convertToJson)
@@ -36,12 +37,13 @@ export default class ExternalServices {
     // }
   }
 
-  async findProductById(id) {
+  async findProductById(id, category) {
     //const products = await this.getData();
     //return products.find((item) => item.Id === id);
-    return await fetch(baseURL + `product/${id}`)
-      .then(convertToJson)
-      .then((data) => data.Result);
+    console.log(category)
+    return await fetch(baseURL + `product/${category}/${id}`)
+      .then((res)=>convertToJson(res))
+      .then((data) => data);
   }
 
   async checkout(payload) {
